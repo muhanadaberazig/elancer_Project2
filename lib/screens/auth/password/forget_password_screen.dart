@@ -40,7 +40,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen>
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         children: [
           const Text(
-            'Enter email...',
+            'Enter Number Mobile...',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -58,7 +58,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen>
           AppTextField(
             hint: 'Email',
             controller: _emailTextController,
-            prefixIcon: Icons.email,
+            prefixIcon: Icons.email, label: 'email',
           ),
           const SizedBox(height: 15),
           ElevatedButton(

@@ -17,7 +17,7 @@ class AuthApiController with Helpers {
     var url = Uri.parse(ApiSettings.register);
     var response = await http.post(url, body: {
       'full_name': student.fullName,
-      'email': student.email,
+      'mobile': student.email,
       'password': student.passsword,
       'gender': student.gender,
     });
@@ -38,10 +38,10 @@ class AuthApiController with Helpers {
   }
 
   Future<bool> login(BuildContext context,
-      {required String email, required String password}) async {
+      {required String mobile, required String password}) async {
     var url = Uri.parse(ApiSettings.login);
     var response = await http.post(url, body: {
-      'email': email,
+      'mobile': mobile,
       'password': password,
     });
     if (response.statusCode == 200) {

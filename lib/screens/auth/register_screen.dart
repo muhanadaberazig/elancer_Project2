@@ -3,6 +3,8 @@ import 'package:elancer_api/helpers/helpers.dart';
 import 'package:elancer_api/models/student.dart';
 import 'package:elancer_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -16,7 +18,9 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
   late TextEditingController _emailTextController;
   late TextEditingController _passwordTextController;
 
-  String _gender = 'M';
+  String _select = 'M';
+  String _selected ='a';
+
 
   @override
   void initState() {
@@ -39,43 +43,57 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
       body: ListView(
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         children: [
-          const Text(
-            'Create new account...',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
-          ),
-          const Text(
-            'Enter details below',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
+          Container(
+            height:260.h ,
+            width:304.w ,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:  EdgeInsets.only(left: 110.w,right: 108.w,top: 60.h),
+                  child: Image.asset('images/logo.png'),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 26.w,right: 220.w,top: 46.h),
+                  child: Text('Sign Up',textAlign: TextAlign.left,style: TextStyle(color: HexColor('#36596A'),fontSize: 20),),
+                ),
+                Padding(
+                  padding:EdgeInsets.only(left: 25.w,right: 46.w,top: 1),
+                  child: Text('Create an new acount',style: TextStyle(fontSize: 14,color: HexColor('#666666')),),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 15),
           AppTextField(
-            hint: 'Full name',
+            label:'User Name' ,
+            hint: 'User Name',
             controller: _fullNameTextController,
             prefixIcon: Icons.person,
           ),
           const SizedBox(height: 10),
           AppTextField(
-            hint: 'Email',
+            label: 'Mobile',
+            hint: 'Mobile',
             controller: _emailTextController,
-            prefixIcon: Icons.email,
+            prefixIcon: Icons.mobile_friendly,
           ),
           const SizedBox(height: 10),
           AppTextField(
+            label: 'Password',
             hint: 'Password',
+            controller: _passwordTextController,
+            prefixIcon: Icons.lock,
+            obscureText: true,
+          ),
+          const SizedBox(height: 10),
+          AppTextField(
+            label: 'Confirm Password',
+            hint: 'Confirm Password',
             controller: _passwordTextController,
             prefixIcon: Icons.lock,
             obscureText: true,
@@ -85,14 +103,14 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
             children: [
               Expanded(
                 child: RadioListTile<String>(
-                  title: const Text('Male'),
+                  title: Text('Male',style: TextStyle(color: HexColor('#36596A')),),
                   contentPadding: EdgeInsets.zero,
                   value: 'M',
-                  groupValue: _gender,
+                  groupValue: _select,
                   onChanged: (String? value) {
                     if (value != null) {
                       setState(() {
-                        _gender = value;
+                        _select = value;
                       });
                     }
                   },
@@ -100,14 +118,14 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
               ),
               Expanded(
                 child: RadioListTile<String>(
-                  title: const Text('Female'),
+                  title:  Text('Female',style: TextStyle(color: HexColor('#36596A'))),
                   contentPadding: EdgeInsets.zero,
                   value: 'F',
-                  groupValue: _gender,
+                  groupValue: _select,
                   onChanged: (String? value) {
                     if (value != null) {
                       setState(() {
-                        _gender = value;
+                        _select = value;
                       });
                     }
                   },
@@ -115,15 +133,31 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
               ),
             ],
           ),
-          const SizedBox(height: 15),
-          ElevatedButton(
-            onPressed: () async => await performRegister(),
-            child: const Text('REGISTER'),
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(0, 50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
+          SizedBox(height: 22.h),
+          RadioListTile<String>(
+              contentPadding: EdgeInsets.zero,
+              title: Text('By creating an account you have to agree with our them & conduction.',style: TextStyle(color: HexColor('#AAAAAA'),fontSize: 15),),
+              value: '',
+              groupValue: _selected,
+              onChanged: (String? value) {
+                if (value != null)
+                  setState(() {
+                    _selected = value;
+                  });
+              }),
+           SizedBox(height: 32.h),
+          Container(
+            height: 50.h,
+            width: 325.w,
+            decoration: BoxDecoration(
+                color: Colors.black,
+              borderRadius: BorderRadius.circular(30)
+            ),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/loginsignup_screen');
+              },
+              child: const Text('Login',style: TextStyle(fontSize: 16,color: Colors.white),),
             ),
           )
         ],
@@ -161,7 +195,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
     student.fullName = _fullNameTextController.text;
     student.email = _emailTextController.text;
     student.passsword = _passwordTextController.text;
-    student.gender = _gender;
+    student.gender = _select;
     return student;
   }
 }

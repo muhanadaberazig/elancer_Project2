@@ -1,6 +1,7 @@
 import 'package:elancer_api/widgets/out_bording_contentent.dart';
-import 'package:elancer_api/widgets/out_Bording_Indicator.dart';
+import 'package:elancer_api/widgets/out_bording_lndicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OutBordingScreen extends StatefulWidget {
   const OutBordingScreen({Key? key}) : super(key: key);
 
@@ -28,128 +29,74 @@ class _OutBordingScreenState extends State<OutBordingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Visibility(
-                  visible: _curentPage<2,
-                  /* لوبدي استبدل الزر  لما يصير اكبر من2 بزر تاني*/
-                  // replacement: TextButton(
-                  //   onPressed: () {},
-                  //   child: Text(
-                  //     'SKIP',
-                  //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  //   ),
-                  // ),,
-                  child: Align(
+    return Scaffold(
+        body: ListView(
+         children: [
+          Column(
+             children: [
+               ConstrainedBox(
+                 constraints: BoxConstraints(
+                   maxWidth: 520.w,
+                   maxHeight: 700.h,
+                   minHeight: 0,
+                   minWidth: 0,
+                 ),
+                 child: PageView(
+                   controller: _pageController,
+                   onPageChanged: (value) {
+                     setState(() {
+                       _curentPage = value;
+                     });
+                   },
+                   children: [
+                     OutBordingContentet(
+                       image: 'images/out.png',
+                       text: '20% Discount \nNew Arrival Product',
+                       hinttext: 'Publish up your selfies to make yourself \nmore beautiful with this app.',
+                     ),
+                     OutBordingContentet(
+                       image: 'images/out2.png',
+                       text: 'Take Advantage\nOf The Offer Shopping',
+                       hinttext: 'Publish up your selfies to make yourself \nmore beautiful with this app.',
+                     ),
+                     OutBordingContentet(
+                       image: 'images/out3.png',
+                       text: 'All Types Offers\nWithin Your Reach',
+                       hinttext: 'Publish up your selfies to make yourself \nmore beautiful with this app.',
 
-                    alignment: AlignmentDirectional.topEnd,
-                    child: TextButton(
-                      onPressed: ()=>_pageController.animateToPage(2, duration: Duration(seconds: 1), curve: Curves.ease),
-                      child: Text(
-                        'SKIP',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: double.infinity,
-                  maxHeight: 600,
-                  minHeight: 0,
-                  minWidth: 0,
-                ),
-                child: PageView(
-                  controller: _pageController,
-                  onPageChanged: (value) {
-                    setState(() {
-                      _curentPage = value;
-                    });
-                  },
-                  children: [
-                    OutBordingContentet(
-                      image: Image.asset('images/Technologies.png'),
-                      text: 'Mohanad Technologies',
-                    ),
-                    OutBordingContentet(
-                      image: Image.asset('images/Workflow.png'),
-                      text: 'Mohanad Working',
-                    ),
-                    OutBordingContentet(
-                      image: Image.asset('images/Workflow.png'),
-                      text: 'Mohanad Message Send',
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                      color: _curentPage > 0 ? Colors.black : Colors.grey,
-                      onPressed: () {
-                        _pageController.previousPage(
-                            duration: Duration(seconds: 1), curve: Curves.ease);
-                      },
-                      icon: Icon(Icons.arrow_back_ios)),
-                  /*كود لاخفاء الزر لما يكون اكبر من 2*/
-                  Visibility(
-                    visible: _curentPage < 2,
-                    maintainSize: true,
-                    maintainState: true,
-                    maintainAnimation: true,
-                    child: IconButton(
-                        onPressed: () {
-                          _pageController.nextPage(
-                              duration: Duration(seconds: 1), curve: Curves.ease);
-                        },
-                        icon: Icon(Icons.arrow_forward_ios)),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                /* ال3 ازرار التنقل بين الصفحات الي تحت*/
-                outBoardingIndicator(
-                  margin: 10,
-                  selected: _curentPage == 0,
-                ),
-                outBoardingIndicator(margin: 10, selected: _curentPage == 1),
-                outBoardingIndicator(selected: _curentPage == 2),
-              ]),
-              SizedBox(
-                height: 10,
-              ),
-              Visibility(
-                visible: _curentPage == 2,
-                maintainAnimation: true,
-                maintainState: true,
-                maintainSize: true,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ElevatedButton(
-                    onPressed: () =>Navigator.pushReplacementNamed(context, '/LoginScreens'),
-                    child: Text('START'),
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                  ),
-                ),
-              )
-            ],
-          ),
+                     ),
+                   ],
+                 ),
+               ),
+               Padding(
+                 padding:  EdgeInsets.only(left: 20.w),
+                 child: Row(
+                     mainAxisAlignment: MainAxisAlignment.start,
+                     children: [
+                       /* ال3 ازرار التنقل بين الصفحات الي تحت*/
+                       OutBoardingIndicator(
+                         selected: _curentPage == 0,
+                         margin: 7.w,
+                       ),
+                       OutBoardingIndicator( margin:7.w ,selected: _curentPage == 1),
+                       OutBoardingIndicator(selected: _curentPage == 2,margin: 0,),
+                       SizedBox(width: 230.w),
+                       Container(
+                           width: 60.w,
+                           height: 60.h,
+                           child: Padding(
+                             padding: const EdgeInsets.only(right: 10),
+                             child: InkWell(
+                                 onTap: () {
+                                   Navigator.pushReplacementNamed(context, '/login_screen');
+                                 },
+                                 child: Image.asset('images/arrow.png')),
+                           ))
+                     ]),
+               ),
+             ],
+           ),
+         ],
         ),
       );
   }

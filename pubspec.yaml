@@ -36,6 +36,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   shared_preferences: ^2.0.8
+  flutter_screenutil: ^5.0.1
+  hexcolor: ^2.0.5
+  curved_navigation_bar: ^1.0.1
+  simple_animations: ^4.0.1
+  dotted_border: ^2.0.0+1
+  flutter_slidable: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -60,9 +66,13 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - images/
+    - images/d.jpg
+    - images/f.jpg
+    - images/a52.jpg
+    - images/a522.jpg
+    - images/a525.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

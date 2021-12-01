@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField({
     Key? key,
+    required this.label,
     required this.hint,
     required this.controller,
     required this.prefixIcon,
@@ -15,6 +17,7 @@ class AppTextField extends StatelessWidget {
   final TextEditingController controller;
   final IconData prefixIcon;
   final bool obscureText;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +26,10 @@ class AppTextField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        hintText: hint,
-        prefixIcon: Icon(prefixIcon),
+        label: Text(label,style: TextStyle(fontSize: 17,color: HexColor('#000000'))),
+        prefixIcon: Icon(prefixIcon,color:HexColor('#36596A') ,),
         enabledBorder: border(),
-        focusedBorder: border(borderColor: Colors.blue)
+        focusedBorder: border(borderColor: Colors.black54)
       ),
     );
   }
@@ -41,3 +44,4 @@ class AppTextField extends StatelessWidget {
     );
   }
 }
+

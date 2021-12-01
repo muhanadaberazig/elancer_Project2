@@ -14,39 +14,14 @@ class _LaunchScreenState extends State<LaunchScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // Future.delayed(const Duration(seconds: 3), () {
-    //   String route = SharedPrefController().loggedIn
-    //       ? '/categories_screen'
-    //       : '/login_screen';
-    //   Navigator.pushReplacementNamed(context, route);
-    // });
-    Navigator.pushNamed(context, '/Out_bording_screen');
+    Future.delayed(Duration(seconds: 2),(){
+    Navigator.pushReplacementNamed(context, '/Out_bording_screen');
+    });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: AlignmentDirectional.topStart,
-            end: AlignmentDirectional.bottomEnd,
-            colors: [
-              Colors.blue.shade800,
-              Colors.orange.shade600,
-            ],
-          ),
-        ),
-        child: const Text(
-          'API APP',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
-        ),
-      ),
+      body: Image.asset('images/lunch.png',fit: BoxFit.fill,width: double.infinity,height: double.infinity,),
     );
   }
 }
