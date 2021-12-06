@@ -9,7 +9,8 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../models/bn_screen.dart';
 import '../../prefs/shared_pref_controller.dart';
 import '../categories_screen.dart';
-import 'basket.dart';
+import '../category_screen_final.dart';
+import 'card.dart';
 import 'profile.dart';
 
 class MainScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final List<BnScreen> _bnScreen = <BnScreen>[
-    BnScreen(title: 'Home', widget: CategoriesScreen()),
+    BnScreen(title: 'Home', widget: HomePage()),
     BnScreen(title: 'Cart', widget: CartScreen()),
     BnScreen(title: 'Profile', widget: ProfileScreen()),
   ];
@@ -31,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFF2d3447),
         elevation: 0,
         title: Text(_bnScreen[_curantIndex].title,
             style: TextStyle(color: Colors.black, fontSize: 20)),
@@ -40,11 +41,10 @@ class _MainScreenState extends State<MainScreen> {
           IconButton(
               onPressed: () async {
                 await SharedPrefController().clear();
-                Navigator.pushReplacementNamed(context, '/LoginScreens');
+                Navigator.pushReplacementNamed(context, '/login_screen');
               },
               icon: Icon(Icons.logout,color: Colors.black,)),
         ],
-        // centerTitle: true,
       ),
       body: _bnScreen[_curantIndex].widget,
       bottomNavigationBar: CurvedNavigationBar(
@@ -53,14 +53,12 @@ class _MainScreenState extends State<MainScreen> {
             _curantIndex = value;
           });
         },
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFF2d3447),
         index: _curantIndex,
         color: HexColor('#36596A'),
         height: 50.h,
         items: const [
-          Icon(
-            Icons.home,
-          ),
+          Icon(Icons.home,),
           Icon(Icons.shopping_cart),
           Icon(Icons.person),
         ],

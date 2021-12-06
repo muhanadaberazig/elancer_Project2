@@ -15,7 +15,8 @@ class _LaunchScreenState extends State<LaunchScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration(seconds: 2),(){
-    Navigator.pushReplacementNamed(context, '/Out_bording_screen');
+      String route =SharedPrefController().loggedIn? '/Main_screen':'/Out_bording_screen';
+    Navigator.pushReplacementNamed(context, route);
     });
   }
   @override

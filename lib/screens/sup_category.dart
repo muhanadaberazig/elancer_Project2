@@ -1,4 +1,3 @@
-import 'package:elancer_api/api/controllers/auth_api_controller.dart';
 import 'package:elancer_api/models/category.dart';
 import 'package:elancer_api/models/prodect.dart';
 import 'package:elancer_api/models/sup_category.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import '../api/auth_api_controller.dart';
 import 'categories_screen.dart';
 class NewArrivals extends StatefulWidget {
    NewArrivals({Key? key,required this.category,required this.title}) : super(key: key);
@@ -77,9 +77,9 @@ class _NewArrivalsState extends State<NewArrivals> {
                 itemCount:widget.category.length,
                 itemBuilder: (BuildContext ctx, index) {
                   return InkWell(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(productt: widget.category[index]),));
-                    },
+                    // onTap: () {
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(productt: widget.category[index]),));
+                    // },
                       child: NewWidget(image:widget.category[index].image,title: widget.category[index].title, id: 10,));
                 }),
           ),
@@ -88,7 +88,7 @@ class _NewArrivalsState extends State<NewArrivals> {
     );
   }
   Future<void> logout(BuildContext context) async {
-    bool loggedOut = await AuthApiController().logout();
+    bool loggedOut = await AuthApi().logout();
     if (loggedOut) Navigator.pushReplacementNamed(context, '/login_screen');
   }
 }

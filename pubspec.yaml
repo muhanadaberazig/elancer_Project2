@@ -42,6 +42,10 @@ dependencies:
   simple_animations: ^4.0.1
   dotted_border: ^2.0.0+1
   flutter_slidable: ^1.1.0
+  card_swiper: ^1.0.4
+  carousel_slider: ^4.0.0
+  get: ^4.5.1
+
 
 dev_dependencies:
   flutter_test:

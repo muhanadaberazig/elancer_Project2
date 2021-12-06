@@ -34,7 +34,7 @@ class _LoginSignUpState extends State<LoginSignUp> {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/Main_screen');
+                    Navigator.pushReplacementNamed(context, '/Main_screen');
                   },
                   child: const Text('Start Shopping',style: TextStyle(fontSize: 16,color: Colors.white),),
                 ),

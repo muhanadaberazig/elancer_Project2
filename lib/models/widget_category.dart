@@ -16,40 +16,36 @@ class NewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 171.h,
-        width: 155.w,
-        alignment: Alignment.center,
-        child: Stack(
-          children: [
-            Container(
-              height: 165.h,
-                width: 140.w,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(image,fit:BoxFit.fitHeight))),
-            Padding(
-              padding: const EdgeInsets.only(top: 120),
-              child: Container(
-                  width: 140.w,
-                  height: 49.h,
-                  decoration:  BoxDecoration(
-                      color: HexColor('#36596A'),
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10))
-                  ),
-                  child:Column(
-                    children: [
-                      SizedBox(height: 4.h,),
-                      Text(title,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-                      SizedBox(height: 2.h,),
-                     count==0?SizedBox():Text(count.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)
-                    ],
-                  )
+      height: 160.h,
+      width: 260.w,
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+              child: Image.asset(image,fit:BoxFit.fitHeight)),
+          Padding(
+            padding: const EdgeInsets.only(top: 110),
+            child: Container(
+                width: 202.w,
+                height: 60.h,
+                decoration:  BoxDecoration(
+                    color: HexColor('#36596A'),
+                    borderRadius: BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10))
+                ),
+                child:Column(
+                  children: [
+                    SizedBox(height: 4.h,),
+                    Text(title,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                    SizedBox(height: 2.h,),
+                   count==0?SizedBox():Text(count.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)
+                  ],
+                )
 
 
-              ),
-            )
-          ],
-        )
+            ),
+          )
+        ],
+      ),
     );
   }
 }

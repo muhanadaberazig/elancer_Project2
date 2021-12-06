@@ -1,33 +1,39 @@
+import 'api/city.dart';
+
 class User {
   late int id;
-  late String firstName;
-  late String lastName;
-  late String email;
+  late String name;
+  late String? email;
   late String mobile;
-  late String bio;
-  late String jobTitle;
-  late double latitude;
-  late double longitude;
-  late String country;
-  late String image;
-  late int active;
-  late String emailVerifiedAt;
-  late int imagesCount;
+  late String gender;
+  late bool active;
+  late bool verified;
+  late int cityId;
+  late int storeId;
+  late String? fcmToken;
+  late String token;
+  late String tokenType;
+  late String refreshToken;
+  late City city;
+  late String password;
+
+
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    firstName = json['first_name'];
-    lastName = json['last_name'];
+    name = json['name'];
     email = json['email'];
     mobile = json['mobile'];
-    bio = json['bio'];
-    jobTitle = json['job_title'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    country = json['country'];
-    image = json['image'];
+    gender = json['gender'];
     active = json['active'];
-    emailVerifiedAt = json['email_verified_at'];
-    imagesCount = json['images_count'];
+    verified = json['verified'];
+    cityId = json['city_id'];
+    storeId = json['store_id'];
+    fcmToken = json['fcm_token'];
+    token = json['token'];
+    tokenType = json['token_type'];
+    refreshToken = json['refresh_token'];
+     city =  City.fromJson(json['city']) ;
   }
+
 }

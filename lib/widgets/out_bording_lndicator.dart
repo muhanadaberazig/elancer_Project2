@@ -10,7 +10,8 @@ class OutBoardingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return
+      Container(
       width: selected? 20.w:7.w,
       height: selected ? 5.h:7.h,
       decoration: BoxDecoration(

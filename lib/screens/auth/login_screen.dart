@@ -1,4 +1,3 @@
-import 'package:elancer_api/api/controllers/auth_api_controller.dart';
 import 'package:elancer_api/helpers/helpers.dart';
 import 'package:elancer_api/widgets/app_text_field.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -7,7 +6,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../api/controllers/auth_api_controller.dart';
+
+import '../../api/auth_api_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> with Helpers {
-  late TextEditingController _emailTextController;
+  late TextEditingController _mobileTextController;
   late TextEditingController _passwordTextController;
 
   late TapGestureRecognizer _tapGestureRecognizer;
@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _emailTextController = TextEditingController();
+    _mobileTextController = TextEditingController();
     _passwordTextController = TextEditingController();
 
     _tapGestureRecognizer = TapGestureRecognizer()
@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   @override
   void dispose() {
     // TODO: implement dispose
-    _emailTextController.dispose();
+    _mobileTextController.dispose();
     _passwordTextController.dispose();
     super.dispose();
   }
@@ -52,41 +52,54 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
       body: ListView(
         children: [
           Container(
-            height:250.h ,
-            width:304.w ,
+            height: 250.h,
+            width: 304.w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding:  EdgeInsets.only(left: 110.w,right: 108.w,top: 60.h),
+                  padding:
+                      EdgeInsets.only(left: 110.w, right: 108.w, top: 60.h),
                   child: Image.asset('images/logo.png'),
                 ),
-              Padding(
-                padding: EdgeInsets.only(left: 26.w,right: 248.w,top: 46.h),
-                child: Text('Welcome!',textAlign: TextAlign.left,style: TextStyle(color: HexColor('#36596A'),fontSize: 20),),
-              ),
-             Padding(
-               padding:EdgeInsets.only(left: 25.w,right: 46.w,top: 1),
-               child: Text('please login or sign up to continue our app',style: TextStyle(fontSize: 14),),
-             ),
+                Padding(
+                  padding: EdgeInsets.only(left: 26.w, right: 100.w, top: 30.h),
+                  child: Text(
+                    'Welcome RiKA ,',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: HexColor('#36596A'),
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.w, right: 46.w, top: 5.h),
+                  child: Text(
+                    'please login or sign up to continue our app',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ),
               ],
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: 45.h,left: 24.w,right: 24.w),
+            padding: EdgeInsets.only(top: 45.h, left: 24.w, right: 24.w),
             child: TextField(
               keyboardType: TextInputType.number,
-              controller: _emailTextController,
+              controller: _mobileTextController,
               decoration: InputDecoration(
-                enabledBorder: border(),
-                focusedBorder: border(borderColor: Colors.black54),
-                //suffixIcon:
-                label: Text('Email',style: TextStyle(fontSize: 16,color: HexColor('#000000')),)
-              ),
+                  enabledBorder: border(),
+                  focusedBorder: border(borderColor: Colors.black54),
+                  //suffixIcon:
+                  label: Text(
+                    'Mobile',
+                    style: TextStyle(fontSize: 16, color: HexColor('#000000')),
+                  )),
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: 14.h,left: 24.w,right: 24.w),
+            padding: EdgeInsets.only(top: 14.h, left: 24.w, right: 24.w),
             child: TextField(
               keyboardType: TextInputType.text,
               controller: _passwordTextController,
@@ -95,35 +108,61 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
                   enabledBorder: border(),
                   focusedBorder: border(borderColor: Colors.black54),
                   //suffixIcon:
-                  label: Text('Password',style: TextStyle(fontSize: 16,color: HexColor('#000000')),)
-              ),
+                  label: Text(
+                    'Password',
+                    style: TextStyle(fontSize: 16, color: HexColor('#000000')),
+                  )),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 200,top: 0),
-            child: TextButton(onPressed: (){
-              Navigator.pushReplacementNamed(context, '/forget_password_screen');
-            },
-                child: Text('I forgot my password !',style: TextStyle(fontSize: 15,color: HexColor('#36596A') ),)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/changep_assword_screen');
+                  },
+                  child: Text(
+                    'Change Password  !',
+                    style: TextStyle(fontSize: 15, color: HexColor('#36596A')),
+                  )),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/forget_password_screen');
+                  },
+                  child: Text(
+                    'I forgot my password !',
+                    style: TextStyle(fontSize: 15, color: HexColor('#36596A')),
+                  )),
+            ],
           ),
           Padding(
             padding: EdgeInsets.only(top: 35.h),
-            child: TextButton(onPressed: (){},
+            child: TextButton(
+                onPressed: () {},
                 child: Container(
                     decoration: BoxDecoration(
-                        color:  Colors.black,
-                        borderRadius: BorderRadius.circular(30)
-                    ),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(30)),
                     height: 50.h,
                     width: 325.w,
-                    child: TextButton(onPressed: () async => await performLogin(),
-                      // {
-                    //   Navigator.pushNamed(context, '/register_screen');
-                    // },
-                        child:const Text('Login',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)))),
+                    child: TextButton(
+                        onPressed: () async => await performLogin(),
+                        // {
+                        //   Navigator.pushNamed(context, '/register_screen');
+                        // },
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        )))),
           ),
-           SizedBox(height: 20.h,),
-           Divider(
+          SizedBox(
+            height: 20.h,
+          ),
+          Divider(
             endIndent: 10,
             indent: 10,
             thickness: 2,
@@ -131,20 +170,27 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
           ),
           Padding(
             padding: EdgeInsets.only(top: 20.h),
-            child: TextButton(onPressed: (){},
+            child: TextButton(
+                onPressed: () {},
                 child: Container(
                     decoration: BoxDecoration(
-                        color:  HexColor('#36596A'),
-                        borderRadius: BorderRadius.circular(30)
-                    ),
+                        color: HexColor('#36596A'),
+                        borderRadius: BorderRadius.circular(30)),
                     height: 50.h,
                     width: 325.w,
-                    child: TextButton(onPressed: (){
-                      Navigator.pushNamed(context, '/register_screen');
-                    },
-                      child:const Text('Sign Up',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)))),
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/register_screen');
+                        },
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        )))),
           ),
-
         ],
       ),
     );
@@ -157,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   bool checkData() {
-    if (_emailTextController.text.isNotEmpty &&
+    if (_mobileTextController.text.isNotEmpty &&
         _passwordTextController.text.isNotEmpty) {
       return true;
     }
@@ -170,14 +216,19 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   Future<void> login() async {
-    bool status = await AuthApiController().login(
+    bool status = await AuthApi().login(
       context,
-      mobile: _emailTextController.text,
+      mobile: _mobileTextController.text,
       password: _passwordTextController.text,
     );
-    if (status) Navigator.pushReplacementNamed(context,  '/categories_screen');
+    if (status) {
+      Future.delayed(Duration(seconds: 1),(){
+        Navigator.pushReplacementNamed(context, '/Main_screen');
+      });
+    }
   }
 }
+
 OutlineInputBorder border({Color borderColor = Colors.grey}) {
   return OutlineInputBorder(
     borderSide: BorderSide(

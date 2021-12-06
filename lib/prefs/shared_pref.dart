@@ -1,8 +1,8 @@
-import 'package:elancer_api/models/student.dart';
+
 import 'package:elancer_api/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum PrefKeys { loggedIn, name,id,cityEn,cityAr,them,language,mobile, password, gender, token }
+enum PrefKeys { loggedIn, fullName, phone, gender, token ,city}
 
 class SharedPrefController {
   static final SharedPrefController _instance = SharedPrefController._();
@@ -18,25 +18,23 @@ class SharedPrefController {
   Future<void> initPref() async {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
-
-  Future<void> save({required  User user}) async {
+  Future<void> getCity()async{
+    await _sharedPreferences.setBool(PrefKeys.city.toString(), true);
+  }
+  Future<void> save({required User student}) async {
     await _sharedPreferences.setBool(PrefKeys.loggedIn.toString(), true);
-    await _sharedPreferences.setInt(PrefKeys.id.toString(),user.id);
-    await _sharedPreferences.setString(PrefKeys.name.toString(),user.name);
-    await _sharedPreferences.setString(PrefKeys.cityAr.toString(),user.city.nameAr);
-    await _sharedPreferences.setString(PrefKeys.cityEn.toString(),user.city.nameEn);
     await _sharedPreferences.setString(
-        PrefKeys.mobile.toString(), user.mobile);
+        PrefKeys.fullName.toString(), student.name);
     await _sharedPreferences.setString(
-        PrefKeys.password.toString(), user.password);
+        PrefKeys.phone.toString(), student.mobile);
     await _sharedPreferences.setString(
-        PrefKeys.gender.toString(), user.gender);
+        PrefKeys.gender.toString(), student.gender);
     await _sharedPreferences.setString(
-        PrefKeys.token.toString(), 'Bearer ' + user.token);
+        PrefKeys.token.toString(), 'Bearer ' + student.token);
   }
 
-  bool get loggedIn =>
-      _sharedPreferences.getBool(PrefKeys.loggedIn.toString()) ?? false;
+  bool get loggedIn => _sharedPreferences.getBool(PrefKeys.loggedIn.toString()) ?? false;
+  bool get createdCity => _sharedPreferences.getBool(PrefKeys.city.toString()) ?? false;
 
   String get token =>
       _sharedPreferences.getString(PrefKeys.token.toString()) ?? '';
