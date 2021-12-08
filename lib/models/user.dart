@@ -15,7 +15,7 @@ class User {
   late String tokenType;
   late String refreshToken;
   late City city;
-  late String password;
+  // late String? password;
 
 
 
@@ -33,6 +33,8 @@ class User {
     token = json['token'];
     tokenType = json['token_type'];
     refreshToken = json['refresh_token'];
+    // password = json['password'];
+
      city =  City.fromJson(json['city']) ;
   }
 

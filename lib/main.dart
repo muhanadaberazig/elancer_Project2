@@ -23,7 +23,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPrefController().initPref();
+   await SharedPrefController().initPref();
   runApp(const MyApp());
 }
 
@@ -44,14 +44,12 @@ class MyApp extends StatelessWidget {
           '/register_screen': (context) => RegisterScreen(),
           '/Main_screen': (context) => MainScreen(),
           '/forget_password_screen': (context) => ForgetPasswordScreen(),
-          // '/categories_screen': (context) => CategoriesScreen(),
           '/loginsignup_screen': (context) => LoginSignUp(),
           '/category_screen': (context) => CategoryScreen(),
           '/sup_category_screen': (context) => SupCategory(),
           '/basket_screen': (context) => CartScreen(),
           '/profile_screen': (context) => ProfileScreen(),
           '/changep_assword_screen': (context) => ChangePassword(),
-          // '/verification_screen': (context) => VerificationScreen(),
           '/product_screen': (context) => ProductScreen(),
 
         },

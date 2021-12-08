@@ -97,7 +97,7 @@ Future<bool> activePhone(BuildContext context,
         'lang':'en'
       }
   );
-  // print("ahmed "+response.statusCode.toString());
+
   if (response.statusCode == 200) {
 
     //TODO: SHARED PREFERENCES - SAVE LOGGED IN USER DATA!!

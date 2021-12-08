@@ -27,8 +27,8 @@ class SharedPrefController {
     await _sharedPreferences.setString(PrefKeys.cityEn.toString(),user.city.nameEn);
     await _sharedPreferences.setString(
         PrefKeys.mobile.toString(), user.mobile);
-    await _sharedPreferences.setString(
-        PrefKeys.password.toString(), user.password);
+    // await _sharedPreferences.setString(
+    //     PrefKeys.password.toString(), user.password);
     await _sharedPreferences.setString(
         PrefKeys.gender.toString(), user.gender);
     await _sharedPreferences.setString(
