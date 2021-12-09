@@ -6,9 +6,10 @@ class HomeGetxController extends GetxController{
   HomeResponse? homeResponse;
   bool loading =false;
   final HomeApiController _apiController =HomeApiController();
-
+  static HomeGetxController get to => Get.find<HomeGetxController>();
   @override
   void onInit() {
+    getHome();
     // TODO: implement onInit
     super.onInit();
   }

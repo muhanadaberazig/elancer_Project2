@@ -243,9 +243,10 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
     }
   }
   Future<void> resetPassword() async {
+    print("ahme");
     bool status = await AuthApi().activePhone(
       context,
-      mobile: widget.mobile,
+      mobile: "595328921",
       code: _code!,
     );
     if (status) Navigator.of(context).pushNamed("/login_screen");

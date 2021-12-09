@@ -13,7 +13,9 @@ class HomeApiController with ApiHelper{
     var response =await http.get(url,headers: {
       HttpHeaders.authorizationHeader:SharedPrefController().token
     });
+    print("ahmed"+response.statusCode.toString());
     if(response.statusCode==200){
+      print("ahmed"+jsonDecode(response.body).toString());
     return HomeResponse.fromJson(jsonDecode(response.body)['data']);
     }
     return null;

@@ -6,13 +6,13 @@ import 'package:elancer_api/models/user.dart';
 class BaseApiObjectReponse<T> extends BaseApiResponse {
   /* بيجي ع شكلين الي تحت object , data*/
   //late T object;
-  late T data;
+  late User data;
 
   BaseApiObjectReponse.fromJson(Map<String, dynamic> json)
       : super.fromJson(json) {
     if (json.containsKey('data')) {
       if (T == User) {
-        data = User.fromJson(json['data']) as T;
+        data = User.fromJson(json['data']);
       }
     }
 

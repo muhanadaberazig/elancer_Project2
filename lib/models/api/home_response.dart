@@ -5,14 +5,14 @@ import 'package:elancer_api/models/category.dart';
 
 import 'base_api_response.dart';
 
-class HomeResponse  extends BaseApiResponse{
+class HomeResponse  {
  late List<Slider> slider;
  late List<Categorie> categories;
  late List<Product> latestProducts;
  late List<Product> famousProducts;
 
 
-  HomeResponse.fromJson(Map<String, dynamic> json) :super.fromJson(json) {
+  HomeResponse.fromJson(Map<String, dynamic> json) {
     if (json['slider'] != null) {
       slider = <Slider>[];
       json['slider'].forEach((v) {

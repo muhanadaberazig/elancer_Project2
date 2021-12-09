@@ -20,16 +20,20 @@ import 'package:elancer_api/screens/wdget/sup_category_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+
+import 'get/home_getx_controler.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
    await SharedPrefController().initPref();
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+   MyApp({Key? key}) : super(key: key);
+  HomeGetxController _homeGetxController = Get.put(HomeGetxController());
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

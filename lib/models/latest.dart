@@ -36,7 +36,7 @@ class Favourites extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 5.h,),
-                    const Text('A52',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                     Text(title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                     const Text('Samsung',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                     SizedBox(height: 5.h,),
                     Row(

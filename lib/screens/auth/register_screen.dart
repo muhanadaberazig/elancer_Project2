@@ -37,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
   late TextEditingController _passwordTextController;
 
   String _select = 'M';
-  String _selected = 'a';
+  String _selected = '1';
 
 
   @override
@@ -298,7 +298,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
     student.mobile = _emailTextController.text;
     student.password = _passwordTextController.text;
     student.gender = _select.toString();
-    student.city_id = _selected.toString();
+    student.city_id = "1";
     return student;
   }
 }

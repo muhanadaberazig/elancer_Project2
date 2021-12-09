@@ -11,7 +11,7 @@ class ApiSettings {
   static const activatePhone = _apiUrl + 'auth/activate';
   static const login = _apiUrl + 'auth/login';
   static const logout = _apiUrl + 'students/auth/logout';
-  static const storeApiKey ="0f035133-b3f9-47a4-8889-ee8afa38d1b3";
+  static const storeApiKey ="d8ecf007-bdbf-4836-8568-101c98a1b048";
 
   static const forgetPassword = _apiUrl + 'students/auth/forget-password';
 }

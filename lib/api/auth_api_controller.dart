@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 import 'controllers/api_helper.dart';
 
 
-class AuthApi with ApiHelper {
+class AuthApi with ApiHelper,Helpers {
   Future<bool> register(BuildContext context,
       {required RegisterUser clinet}) async {
     var url = Uri.parse(ApiSettings.register);
@@ -23,9 +23,9 @@ class AuthApi with ApiHelper {
       'password': clinet.password,
       'gender': clinet.gender,
       'STORE_API_KEY': ApiSettings.storeApiKey,
-      'city_id': clinet.city_id
+      'city_id': "1"
     });
-    print("ahmed "+response.statusCode.toString());
+    print("ahmed "+jsonDecode(response.body).toString());
     if (response.statusCode == 201) {
       {
         // showSnackBar(
@@ -37,11 +37,11 @@ class AuthApi with ApiHelper {
         return true;
       }
     } else if (response.statusCode == 400) {
-      // showSnackBar(
-      //   context: context,
-      //   message: jsonDecode(response.body)['message'],
-      //   error: true,
-      // );
+      showSnackBar(
+        context: context,
+        message: jsonDecode(response.body)['message'],
+        error: true,
+      );
     }
     return false;
   }
@@ -97,24 +97,24 @@ Future<bool> activePhone(BuildContext context,
         'lang':'en'
       }
   );
-
+  print(response.statusCode);
   if (response.statusCode == 200) {
 
     //TODO: SHARED PREFERENCES - SAVE LOGGED IN USER DATA!!
-   var jsonObject = jsonDecode(response.body)['data'];
-    User student = User.fromJson(jsonObject);
-   SharedPrefController().save(user: student);
+   // var jsonObject = jsonDecode(response.body)['data'];
+   //  User student = User.fromJson(jsonObject);
+   // SharedPrefController().save(user: student);
     // showSnackBar(
     //   context: context,
     //   message: jsonDecode(response.body)['message'],
     // );
     return true;
   } else if (response.statusCode == 400) {
-    // showSnackBar(
-    //   context: context,
-    //   message: jsonDecode(response.body)['message'],
-    //   error: true,
-    // );
+    showSnackBar(
+      context: context,
+      message: jsonDecode(response.body)['message'],
+      error: true,
+    );
   }
   return false;
 }

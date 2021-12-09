@@ -18,18 +18,7 @@ import 'sup_category.dart';
 var cardAspectRatio = 12.0 / 16.0;
 var widgetAspectRatio = cardAspectRatio * 1.2;
 
-List<String> images = [
-  "images/huawei2.jpg",
-  "images/huawei2.jpg",
-  "images/huawei2.jpg",
-  "images/iphone1.jpg",
-  "images/iphone1.jpg",
-  "images/iphone1.jpg",
-  "images/huawei2.jpg",
-  "images/iphone1.jpg",
-  "images/iphone1.jpg",
-  "images/iphone1.jpg",
-];
+
 
 List<String> title = [
   "Hounted Ground",
@@ -57,9 +46,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeGetxController _homeGetxController = Get.put(HomeGetxController());
-  var currentPage = images.length - 1.0;
-
+  List<String> images = [
+    HomeGetxController.to.homeResponse!.slider[0].imageUrl,
+    HomeGetxController.to.homeResponse!.slider[1].imageUrl,
+    HomeGetxController.to.homeResponse!.slider[2].imageUrl,
+  ];
+ // HomeGetxController _homeGetxController = Get.put(HomeGetxController());
+  var currentPage ;
+@override
+  void initState() {
+  currentPage= images.length - 1.0;
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     PageController controller = PageController(initialPage: images.length - 1);
@@ -77,7 +76,8 @@ class _HomePageState extends State<HomePage> {
         return Center(
           child: CircularProgressIndicator(),
         );
-      } else if (controller.homeResponse != null) {
+      }
+      else if (controller.homeResponse != null) {
         return ListView(
           children: [
             Column(
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Stack(
                   children: <Widget>[
-                    CardScrollWidget(currentPage),
+                    CardScrollWidget(currentPage: currentPage,list:images,),
                     Positioned.fill(
                       child: InkWell(
                         child: PageView.builder(
@@ -169,6 +169,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 15.h,
                 ),
+                !HomeGetxController.to.loading&&HomeGetxController.to.homeResponse!.categories.isNotEmpty?
                 Container(
                   height: 190.h,
                   child: GridView.builder(
@@ -180,17 +181,31 @@ class _HomePageState extends State<HomePage> {
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 0,
                     ),
-                    itemCount: 10,
+                    itemCount: HomeGetxController.to.homeResponse!.categories.length,
                     itemBuilder: (context, index) {
                       return InkWell(
 
                         child: Favourites(
-                            title: 'title',
+                            title: HomeGetxController.to.homeResponse!.categories[index].nameEn,
                             imageUrl: 'images/iphone1.jpg'),
                       );
                     },
                   ),
-                ),
+                ):
+                    HomeGetxController.to.loading?Center(child: CircularProgressIndicator(),): Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 250.h),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.error,
+                              size: 100,
+                            ),
+                            Text('No Data',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
+                          ],
+                        ),
+                      ),
+                    ),
                 SizedBox(
                   height: 15.h,
                 ),

@@ -222,9 +222,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
       password: _passwordTextController.text,
     );
     if (status) {
-      Future.delayed(Duration(seconds: 1),(){
         Navigator.pushReplacementNamed(context, '/Main_screen');
-      });
     }
   }
 }

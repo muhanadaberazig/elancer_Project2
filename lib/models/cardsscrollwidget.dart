@@ -7,8 +7,8 @@ class CardScrollWidget extends StatelessWidget {
   var currentPage;
   var padding = 10.0;
   var verticalInset = 11.0;
-
-  CardScrollWidget(this.currentPage);
+  List<String> list;
+  CardScrollWidget({this.currentPage, required this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CardScrollWidget extends StatelessWidget {
 
         List<Widget> cardList = [];
 
-        for (var i = 0; i < images.length; i++) {
+        for (var i = 0; i < list.length; i++) {
           var delta = i - currentPage;
           bool isOnRight = delta > 0;
 
@@ -60,7 +60,7 @@ class CardScrollWidget extends StatelessWidget {
                   child: Stack(
                     fit: StackFit.passthrough,
                     children: <Widget>[
-                      Image.asset(images[i], fit: BoxFit.cover),
+                      Image.network(list[i], fit: BoxFit.cover),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Column(
