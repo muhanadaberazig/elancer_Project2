@@ -246,7 +246,7 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
     print("ahme");
     bool status = await AuthApi().activePhone(
       context,
-      mobile: "595328921",
+      mobile: widget.mobile,
       code: _code!,
     );
     if (status) Navigator.of(context).pushNamed("/login_screen");

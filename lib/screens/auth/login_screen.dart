@@ -147,9 +147,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
                     width: 325.w,
                     child: TextButton(
                         onPressed: () async => await performLogin(),
-                        // {
-                        //   Navigator.pushNamed(context, '/register_screen');
-                        // },
+
                         child: const Text(
                           'Login',
                           style: TextStyle(
@@ -222,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
       password: _passwordTextController.text,
     );
     if (status) {
-        Navigator.pushReplacementNamed(context, '/Main_screen');
+        Navigator.pushNamed(context, '/Main_screen');
     }
   }
 }

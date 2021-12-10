@@ -23,7 +23,7 @@ class AuthApi with ApiHelper,Helpers {
       'password': clinet.password,
       'gender': clinet.gender,
       'STORE_API_KEY': ApiSettings.storeApiKey,
-      'city_id': "1"
+      'city_id': clinet.city_id
     });
     print("ahmed "+jsonDecode(response.body).toString());
     if (response.statusCode == 201) {

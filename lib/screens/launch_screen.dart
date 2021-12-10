@@ -1,6 +1,9 @@
+import 'package:elancer_api/get/home_getx_controler.dart';
 import 'package:elancer_api/prefs/shared_pref_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({Key? key}) : super(key: key);
@@ -10,6 +13,7 @@ class LaunchScreen extends StatefulWidget {
 }
 
 class _LaunchScreenState extends State<LaunchScreen> {
+  HomeGetxController _homeGetxController = Get.put(HomeGetxController());
   @override
   void initState() {
     // TODO: implement initState

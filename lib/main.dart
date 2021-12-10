@@ -6,7 +6,10 @@ import 'package:elancer_api/screens/auth/password/verification.dart';
 import 'package:elancer_api/screens/auth/register_screen.dart';
 import 'package:elancer_api/screens/bn_screen/card.dart';
 import 'package:elancer_api/screens/bn_screen/mainscreen.dart';
-import 'package:elancer_api/screens/bn_screen/profile.dart';
+import 'package:elancer_api/screens/bn_screen/profile/profile.dart';
+import 'package:elancer_api/screens/bn_screen/profile/aboute.dart';
+import 'package:elancer_api/screens/bn_screen/profile/fqa_screen.dart';
+import 'package:elancer_api/screens/bn_screen/profile/ticket_screen.dart';
 import 'package:elancer_api/screens/categories_screen.dart';
 import 'package:elancer_api/screens/category_screen.dart';
 import 'package:elancer_api/screens/category_screen_final.dart';
@@ -47,12 +50,19 @@ class MyApp extends StatelessWidget {
           '/HomePage_screen': (context) => HomePage(),
           '/register_screen': (context) => RegisterScreen(),
           '/Main_screen': (context) => MainScreen(),
+          // -------------------------'Profile'---------------------------
+          '/aboute_screen': (context) => AbouteScreen(),
+          '/fqa_screen': (context) => FQAScreen(),
+          '/ticket_screen': (context) => TicketScreen(),
+          '/profile_screen': (context) => ProfileScreen(),
+          // -------------------------'Profile'---------------------------
           '/forget_password_screen': (context) => ForgetPasswordScreen(),
+
           '/loginsignup_screen': (context) => LoginSignUp(),
           '/category_screen': (context) => CategoryScreen(),
           '/sup_category_screen': (context) => SupCategory(),
           '/basket_screen': (context) => CartScreen(),
-          '/profile_screen': (context) => ProfileScreen(),
+
           '/changep_assword_screen': (context) => ChangePassword(),
           '/product_screen': (context) => ProductScreen(),
 

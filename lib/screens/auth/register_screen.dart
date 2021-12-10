@@ -1,4 +1,6 @@
+import 'package:elancer_api/api/controllers/home_api_controler.dart';
 import 'package:elancer_api/helpers/helpers.dart';
+import 'package:elancer_api/models/city/model_city_todata.dart';
 import 'package:elancer_api/models/register.dart';
 import 'package:elancer_api/models/student.dart';
 import 'package:elancer_api/screens/auth/password/verification.dart';
@@ -18,32 +20,22 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> with Helpers {
-  List<Addres> _addres = <Addres>[
-    Addres(name: 'Gaza', id: 0),
-    Addres(name: 'Rafah', id: 2),
-    Addres(name: 'kan', id: 3),
-    Addres(name: 'kan', id: 4),
-    Addres(name: 'Rafah', id: 5),
-    Addres(name: 'Gaza', id: 6),
-    Addres(name: 'kan', id: 7),
-    Addres(name: 'Rafah', id: 8),
-    Addres(name: 'kan', id: 9),
-    Addres(name: 'kan', id: 10),
-  ];
-  int? _selectedd;
-
   late TextEditingController _fullNameTextController;
   late TextEditingController _emailTextController;
   late TextEditingController _passwordTextController;
-
+  late Future<List<CityData>> _future;
   String _select = 'M';
   String _selected = '1';
-
-
+  List<CityData> city = [];
+  bool createDrop=false;
+  late CityData dropdownvalue ;
+ late String indexcity ;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _future = HomeApiController().getCity();
+
     _fullNameTextController = TextEditingController();
     _emailTextController = TextEditingController();
     _passwordTextController = TextEditingController();
@@ -164,32 +156,51 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
                   style: TextStyle(color: HexColor('#36596A'), fontSize: 20),),
               ),
               SizedBox(width: 50.w,),
-              DropdownButton(
-                  dropdownColor: HexColor('#36596A'),
-                  borderRadius: BorderRadius.circular(20),
-                  iconSize: 30,
-                  style: const TextStyle(fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black),
-                  iconDisabledColor: Colors.black,
-                  iconEnabledColor: Colors.grey,
-                  isDense: true,
-                  hint: const Text('Enter Addres'),
-                  onTap: () {},
-                  onChanged: (int? value) {
-                    if (value != null) {
-                      setState(() {
-                        _selectedd = value;
-                      });
-                    }
-                  },
-                  value: _selectedd,
-                  items: _addres.map((e) {
-                    return DropdownMenuItem(
-                      child: Text(e.name),
-                      value: e.id,
+              FutureBuilder<List<CityData>>(
+                future: _future,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                    city = snapshot.data ?? [];
+                    if(!createDrop) dropdownvalue=city.first;
+                    return DropdownButton<CityData>(
+                      value: dropdownvalue,
+                      icon: Icon(Icons.keyboard_arrow_down),
+                      underline: SizedBox(),
+                      items: city.map((e) {
+                        return DropdownMenuItem<CityData>(child: Text(e.nameEn),value: e,);
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          dropdownvalue = value!;
+                          createDrop=true;
+                          indexcity=value.id.toString();
+                          print(indexcity);
+                          print(dropdownvalue.nameEn);
+                        });
+                      },
                     );
-                  }).toList()),
+                  }
+                  else {
+                    return Center(
+                      child: Column(
+                        children: const [
+                          Icon(Icons.warning, size: 80),
+                          Text(
+                            'NO DATA',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  }
+                },
+              ),
             ],
           ),
           SizedBox(height: 22.h),
@@ -286,7 +297,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
         context,
         MaterialPageRoute(
           builder: (context) =>
-              VerificationScreen( mobile: '123456789',),
+              VerificationScreen( mobile: _emailTextController.text,),
         ),
       );
     }
@@ -298,7 +309,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
     student.mobile = _emailTextController.text;
     student.password = _passwordTextController.text;
     student.gender = _select.toString();
-    student.city_id = "1";
+    student.city_id = dropdownvalue.id.toString();
     return student;
   }
 }

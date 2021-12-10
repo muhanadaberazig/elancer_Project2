@@ -4,17 +4,24 @@ import 'package:hexcolor/hexcolor.dart';
 class Favourites extends StatelessWidget {
   String title;
   String imageUrl;
+  int price;
+  int quantity;
+
 
   Favourites({
     required this.title,
     required this.imageUrl,
+    required this.price,
+    required this.quantity,
+
+
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return
+      Stack(
       children: [
-
         Row(
           children: [
             Padding(
@@ -28,22 +35,26 @@ class Favourites extends StatelessWidget {
                 width: 155.w,
                 child: Column(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20.0),
-                      child: Image.asset(
-                        imageUrl,
-                        fit: BoxFit.fill,
+                    Container(
+                      height: 110,
+                      width: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: Image.asset(
+                          imageUrl,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                     SizedBox(height: 5.h,),
                      Text(title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                    const Text('Samsung',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                    Text('subCategoryId',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                     SizedBox(height: 5.h,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text('\$950',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                        Text('\$1100',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,decoration: TextDecoration.lineThrough),),
+                        Text(price.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                        Text(quantity.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
                       ],
                     ),
                   ],
