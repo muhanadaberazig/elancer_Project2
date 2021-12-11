@@ -13,8 +13,6 @@ class Favourites extends StatelessWidget {
     required this.imageUrl,
     required this.price,
     required this.quantity,
-
-
   });
 
   @override
@@ -40,7 +38,7 @@ class Favourites extends StatelessWidget {
                       width: double.infinity,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
-                        child: Image.asset(
+                        child: Image.network(
                           imageUrl,
                           fit: BoxFit.fill,
                         ),

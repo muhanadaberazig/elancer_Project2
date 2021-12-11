@@ -1,11 +1,13 @@
 import 'package:elancer_api/api/auth_api_controller.dart';
 import 'package:elancer_api/get/home_getx_controler.dart';
+import 'package:elancer_api/get/sup_category_proubuct_getx_controler.dart';
 import 'package:elancer_api/models/cardsscrollwidget.dart';
 import 'package:elancer_api/models/category.dart';
 import 'package:elancer_api/models/latest.dart';
 import 'package:elancer_api/models/sup_category.dart';
 import 'package:elancer_api/prefs/shared_pref_controller.dart';
 import 'package:elancer_api/screens/prodect_screen.dart';
+import 'package:elancer_api/screens/wdget/sup_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,25 +36,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  HomeGetxController _homeGetxController = Get.put(HomeGetxController());
+  SupCatPrpGetxController _SupCatPrpGetxController = Get.put(SupCatPrpGetxController());
   bool logout = false;
-  List<String> images = [
-    HomeGetxController.to.homeResponse!.slider[1].imageUrl,
-    HomeGetxController.to.homeResponse!.slider[2].imageUrl,
-    HomeGetxController.to.homeResponse!.slider[3].imageUrl,
-    HomeGetxController.to.homeResponse!.slider[4].imageUrl,
-  ];
+//  List<String> images = [];
   var currentPage;
 
   @override
   void initState() {
-    currentPage = images.length - 1.0;
+    currentPage = _homeGetxController.images.length ;
     // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    PageController controllerr = PageController(initialPage: images.length - 1);
+    PageController controllerr = PageController(initialPage: _homeGetxController.images.length - 1);
     controllerr.addListener(() {
       setState(() {
         currentPage = controllerr.page!;
@@ -98,16 +97,17 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 15.h,
                       ),
+                      !_homeGetxController.loadingimages&&_homeGetxController.images.isNotEmpty?
                       Stack(
                         children: <Widget>[
                           CardScrollWidget(
                             currentPage: currentPage,
-                            list: images,
+                            list: _homeGetxController.images,
                           ),
                           Positioned.fill(
                             child: InkWell(
                               child: PageView.builder(
-                                itemCount: images.length,
+                                itemCount: _homeGetxController.images.length,
                                controller: controllerr,
                                //  scrollDirection: Axis.vertical,
                                 reverse: true,
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )
                         ],
-                      ),
+                      ):_homeGetxController.loadingimages?CircularProgressIndicator():Center(child: Text("NODATA"),),
                       SizedBox(
                         height: 15.h,
                       ),
@@ -178,7 +178,19 @@ class _HomePageState extends State<HomePage> {
                                 itemCount: HomeGetxController
                                     .to.homeResponse!.categories.length,
                                 itemBuilder: (context, index) {
-                                  return category_widget(title: HomeGetxController.to.homeResponse!.categories[index].nameEn,imageUrl: HomeGetxController.to.homeResponse!.categories[index].imageUrl,);
+                                  return InkWell(
+                                      onTap: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => SupCategory(
+                                              id: HomeGetxController
+                                                  .to.homeResponse!.categories[index].id,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: category_widget(title: HomeGetxController.to.homeResponse!.categories[index].nameEn,imageUrl: HomeGetxController.to.homeResponse!.categories[index].imageUrl,));
                                   // Favourites(
                                     //     title: HomeGetxController
                                     //         .to
@@ -405,7 +417,7 @@ class category_widget extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset(
+                          child: Image.network(
                             imageUrl,
                             fit: BoxFit.fill,
                           ),

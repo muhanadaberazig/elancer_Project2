@@ -2,24 +2,24 @@ import 'package:align_positioned/align_positioned.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:elancer_api/get/sup_category_proubuct_getx_controler.dart';
 import 'package:elancer_api/models/latest.dart';
-import 'package:elancer_api/screens/wdget/all_prodect.dart';
+import 'package:elancer_api/screens/prodect_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:hexcolor/hexcolor.dart';
-class SupCategory extends StatefulWidget {
-   SupCategory({Key? key,required this.id}) : super(key: key);
+class AllProdect extends StatefulWidget {
+  AllProdect({Key? key,required this.id}) : super(key: key);
   int id;
   @override
-  _SupCategoryState createState() => _SupCategoryState();
+  _AllProdectState createState() => _AllProdectState();
 }
 
-class _SupCategoryState extends State<SupCategory> {
+class _AllProdectState extends State<AllProdect> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    SupCatPrpGetxController.to.getSupCategory1(widget.id.toString());
+    SupCatPrpGetxController.to.getProduct(widget.id.toString());
   }
 
   @override
@@ -83,8 +83,8 @@ class _SupCategoryState extends State<SupCategory> {
               SizedBox(height: 50.h,),
               Obx(()
               {
-                return  !SupCatPrpGetxController.to.loadingsupCategory.value &&
-                    SupCatPrpGetxController.to.supCategory.value.isNotEmpty
+                return  !SupCatPrpGetxController.to.loadingProduct.value &&
+                    SupCatPrpGetxController.to.product.value.isNotEmpty
                     ?
                 GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
@@ -95,25 +95,25 @@ class _SupCategoryState extends State<SupCategory> {
                     crossAxisSpacing: 5.w,
                     mainAxisSpacing: 15.h,
                   ),
-                  itemCount: SupCatPrpGetxController.to.supCategory.value.length,
+                  itemCount: SupCatPrpGetxController.to.product.value.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AllProdect(
-                              id:  SupCatPrpGetxController.to.supCategory.value[index].id,
+                            builder: (context) => ProductScreen(
+                              id:  SupCatPrpGetxController.to.product.value[index].id,
                             ),
                           ),
                         );
                       },
-                      child: Favourites(title: SupCatPrpGetxController.to.supCategory[index].nameEn,imageUrl: SupCatPrpGetxController.to.supCategory[index].imageUrl,price: 15,quantity: SupCatPrpGetxController.to.supCategory[index].productsCount,),
+                      child: Favourites(title: SupCatPrpGetxController.to.product[index].nameEn,imageUrl: SupCatPrpGetxController.to.product[index].imageUrl,price: 15,quantity: SupCatPrpGetxController.to.product[index].quantity,),
                     );
                   },
                 ):
-                !SupCatPrpGetxController.to.loadingsupCategory.value &&
-                    SupCatPrpGetxController.to.supCategory.value.isEmpty
+                !SupCatPrpGetxController.to.loadingProduct.value &&
+                    SupCatPrpGetxController.to.product.value.isEmpty
                     ? Center(
                   child: Column(
                     children: const [
@@ -131,46 +131,6 @@ class _SupCategoryState extends State<SupCategory> {
                 )
                     : Center(child: CircularProgressIndicator());
               }),
-    //           !SupCatPrpGetxController.to.loadingsupCategory.value &&
-    //               SupCatPrpGetxController.to.supCategory.value.isNotEmpty
-    //               ?
-    //           GridView.builder(
-    //             physics: NeverScrollableScrollPhysics(),
-    //           shrinkWrap: true,
-    //           scrollDirection: Axis.vertical,
-    //           gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-    //             crossAxisCount: 2,
-    //             crossAxisSpacing: 5.w,
-    //             mainAxisSpacing: 15.h,
-    //           ),
-    //           itemCount: SupCatPrpGetxController.to.supCategory.value.length,
-    //           itemBuilder: (context, index) {
-    //             return InkWell(
-    //               onTap: () {
-    //                 Navigator.pushNamed(context,   '/product_screen');
-    //               },
-    //               child: Favourites(title: SupCatPrpGetxController.to.supCategory[index].nameEn,imageUrl: SupCatPrpGetxController.to.supCategory[index].imageUrl,price: 15,quantity: SupCatPrpGetxController.to.supCategory[index].productsCount,),
-    //             );
-    //           },
-    // ):
-    //           !SupCatPrpGetxController.to.loadingsupCategory.value &&
-    //               SupCatPrpGetxController.to.supCategory.value.isEmpty
-    //               ? Center(
-    //             child: Column(
-    //               children: const [
-    //                 Icon(Icons.warning, size: 80),
-    //                 Text(
-    //                   'NO DATA',
-    //                   style: TextStyle(
-    //                     color: Colors.grey,
-    //                     fontWeight: FontWeight.bold,
-    //                     fontSize: 24,
-    //                   ),
-    //                 )
-    //               ],
-    //             ),
-    //           )
-    //               : Center(child: CircularProgressIndicator())
             ],
           ),
         ),

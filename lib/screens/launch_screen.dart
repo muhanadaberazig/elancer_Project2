@@ -13,7 +13,7 @@ class LaunchScreen extends StatefulWidget {
 }
 
 class _LaunchScreenState extends State<LaunchScreen> {
-  HomeGetxController _homeGetxController = Get.put(HomeGetxController());
+
   @override
   void initState() {
     // TODO: implement initState

@@ -36,7 +36,7 @@ void main() async{
 
 class MyApp extends StatelessWidget {
    MyApp({Key? key}) : super(key: key);
-  HomeGetxController _homeGetxController = Get.put(HomeGetxController());
+  //HomeGetxController _homeGetxController = Get.put(HomeGetxController());
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -60,11 +60,11 @@ class MyApp extends StatelessWidget {
 
           '/loginsignup_screen': (context) => LoginSignUp(),
           '/category_screen': (context) => CategoryScreen(),
-          '/sup_category_screen': (context) => SupCategory(),
+          //'/sup_category_screen': (context) => SupCategory(),
           '/basket_screen': (context) => CartScreen(),
 
           '/changep_assword_screen': (context) => ChangePassword(),
-          '/product_screen': (context) => ProductScreen(),
+         // '/product_screen': (context) => ProductScreen(),
 
         },
       ),
