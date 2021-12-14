@@ -1,13 +1,13 @@
 import 'package:elancer_api/api/auth_api_controller.dart';
+import 'package:elancer_api/get/faverite_gtex_controler.dart';
 import 'package:elancer_api/get/home_getx_controler.dart';
 import 'package:elancer_api/get/sup_category_proubuct_getx_controler.dart';
 import 'package:elancer_api/models/cardsscrollwidget.dart';
-import 'package:elancer_api/models/category.dart';
 import 'package:elancer_api/models/latest.dart';
 import 'package:elancer_api/models/sup_category.dart';
 import 'package:elancer_api/prefs/shared_pref_controller.dart';
-import 'package:elancer_api/screens/prodect_screen.dart';
-import 'package:elancer_api/screens/wdget/sup_category_screen.dart';
+import 'package:elancer_api/screens/prodect_details_screen.dart';
+import 'package:elancer_api/screens/sup_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,6 +38,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   HomeGetxController _homeGetxController = Get.put(HomeGetxController());
   SupCatPrpGetxController _SupCatPrpGetxController = Get.put(SupCatPrpGetxController());
+  FaveriteGetxControler _FaveriteGetxControler = Get.put(FaveriteGetxControler());
   bool logout = false;
 //  List<String> images = [];
   var currentPage;
@@ -178,7 +179,8 @@ class _HomePageState extends State<HomePage> {
                                 itemCount: HomeGetxController
                                     .to.homeResponse!.categories.length,
                                 itemBuilder: (context, index) {
-                                  return InkWell(
+                                  return
+                                    InkWell(
                                       onTap: (){
                                         Navigator.push(
                                           context,
@@ -191,14 +193,6 @@ class _HomePageState extends State<HomePage> {
                                         );
                                       },
                                       child: category_widget(title: HomeGetxController.to.homeResponse!.categories[index].nameEn,imageUrl: HomeGetxController.to.homeResponse!.categories[index].imageUrl,));
-                                  // Favourites(
-                                    //     title: HomeGetxController
-                                    //         .to
-                                    //         .homeResponse!
-                                    //         .categories[index]
-                                    //         .nameEn,
-                                    //     imageUrl: HomeGetxController.to.homeResponse!.categories[index].imageUrl);
-
                                 },
                               ),
                             )
@@ -279,6 +273,17 @@ class _HomePageState extends State<HomePage> {
                               .to.homeResponse!.latestProducts.length,
                           itemBuilder: (context, index) {
                             return InkWell(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductScreen(
+                                      id: HomeGetxController
+                                          .to.homeResponse!.latestProducts[index].id,
+                                    ),
+                                  ),
+                                );
+                              },
                               child: Favourites(
                                   title: HomeGetxController
                                       .to
@@ -344,15 +349,28 @@ class _HomePageState extends State<HomePage> {
                           ),
                           itemCount: HomeGetxController.to.homeResponse!.famousProducts.length,
                           itemBuilder: (context, index) {
-                            return Favourites(
-                                title:  HomeGetxController
-                                    .to
-                                    .homeResponse!
-                                    .famousProducts[index]
-                                    .nameEn,
-                                price: HomeGetxController.to.homeResponse!.latestProducts[index].price,
-                                quantity: HomeGetxController.to.homeResponse!.latestProducts[index].quantity,
-                                imageUrl: HomeGetxController.to.homeResponse!.famousProducts[index].imageUrl);
+                            return InkWell(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductScreen(
+                                      id: HomeGetxController
+                                          .to.homeResponse!.famousProducts[index].id,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Favourites(
+                                  title:  HomeGetxController
+                                      .to
+                                      .homeResponse!
+                                      .famousProducts[index]
+                                      .nameEn,
+                                  price: HomeGetxController.to.homeResponse!.latestProducts[index].price,
+                                  quantity: HomeGetxController.to.homeResponse!.latestProducts[index].quantity,
+                                  imageUrl: HomeGetxController.to.homeResponse!.famousProducts[index].imageUrl),
+                            );
                           },
                         ),
                       ),
@@ -417,9 +435,13 @@ class category_widget extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
-                          child: Image.network(
-                            imageUrl,
-                            fit: BoxFit.fill,
+                          child: Container(
+                            height: 130,
+                            width: double.infinity,
+                            child: Image.network(
+                              imageUrl,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                         SizedBox(height: 20.h,),

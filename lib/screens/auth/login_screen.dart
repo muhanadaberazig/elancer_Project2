@@ -100,7 +100,8 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
           ),
           Padding(
             padding: EdgeInsets.only(top: 14.h, left: 24.w, right: 24.w),
-            child: TextField(
+            child:
+            TextField(
               keyboardType: TextInputType.text,
               controller: _passwordTextController,
               obscureText: true,
@@ -117,14 +118,6 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/changep_assword_screen');
-                  },
-                  child: Text(
-                    'Change Password  !',
-                    style: TextStyle(fontSize: 15, color: HexColor('#36596A')),
-                  )),
               TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/forget_password_screen');

@@ -11,8 +11,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../models/bn_screen.dart';
 import '../../prefs/shared_pref_controller.dart';
-import '../categories_screen.dart';
-import '../category_screen_final.dart';
+import '../home_page_screen.dart';
 import 'card.dart';
 import 'profile/profile.dart';
 
@@ -79,8 +78,8 @@ class _MainScreenState extends State<MainScreen> {
                 SizedBox(height: 10.h,),
                 Padding(
                   padding: EdgeInsets.only(left: 30.0.w),
-                  child: const Text(
-                    "Name",
+                  child:  Text(
+                    SharedPrefController().name.toString(),
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),
@@ -88,8 +87,8 @@ class _MainScreenState extends State<MainScreen> {
                 SizedBox(height: 10.h,),
                 Padding(
                   padding: EdgeInsets.only(left: 30.0.w),
-                  child: const Text(
-                    "Phone",
+                  child:  Text(
+                    SharedPrefController().mobile.toString(),
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),

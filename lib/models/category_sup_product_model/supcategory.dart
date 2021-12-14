@@ -7,7 +7,6 @@ class SupCategory {
   late int productsCount;
   late String imageUrl;
 
-  //String get name =>SharedPrefController().language=="ar"?nameAr:nameEn;
 
   SupCategory.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:elancer_api/get/faverite_gtex_controler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class CartScreen extends StatefulWidget {
@@ -17,54 +19,74 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
   List<int> cartItemCount = [1, 1, 1, 1];
   int totalPrice = 0;
 
-  // Future<void> fetchItems() async {
-  //   final String response = await rootBundle.loadString('assets/products.json');
-  //   final data = await json.decode(response);
-  //
-  //   cartItems = data['products']
-  //       .map((data) => Product.fromJson(data)).toList();
-  //
-  //   sumTotal();
-  // }
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    FaveriteGetxControler.to.getFaverite();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFF2d3447),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: ListView(shrinkWrap: true, children: <Widget>[
-            Container(
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: HexColor('#36596A'),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top:20,left: 8),
-                child: ListTile(
-                  title: Text('A52'),
-                  leading: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'images/iphone1.jpg',
-                      fit: BoxFit.cover,
-                      height: 100,
-                      width: 100,
+        body:Obx((){
+          return  Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: !FaveriteGetxControler.to.loadingsupCategory.value &&
+                  FaveriteGetxControler.to.supCategory.isNotEmpty
+                  ? ListView.builder(
+                itemCount: FaveriteGetxControler.to.supCategory.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: HexColor('#36596A'),
                     ),
-                  ),
-                  selectedTileColor: Colors.red,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20, left: 8),
+                      child: ListTile(
+                        title: Text(FaveriteGetxControler.to.supCategory[index].nameEn),
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            FaveriteGetxControler.to.supCategory[index].imageUrl,
+                            fit: BoxFit.cover,
+                            height: 100,
+                            width: 100,
+                          ),
+                        ),
+                        selectedTileColor: Colors.red,
+                      ),
+                    ),
+                  );
+                },
+              )
+                  : !FaveriteGetxControler.to.loadingsupCategory.value &&
+                  FaveriteGetxControler.to.supCategory.isEmpty
+                  ? Center(
+                child: Column(
+                  children: const [
+                    Icon(Icons.warning, size: 80),
+                    Text(
+                      'NO DATA',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                    )
+                  ],
                 ),
-              ),
-            )
-          ]),
-        ));
+              )
+                  : Center(child: CircularProgressIndicator()));
+        })
+
+
+    );
   }
 
 // cartItem() {

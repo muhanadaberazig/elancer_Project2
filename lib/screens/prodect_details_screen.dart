@@ -1,3 +1,5 @@
+import 'package:elancer_api/api/controllers/api_favorite_products_controler.dart';
+import 'package:elancer_api/get/faverite_gtex_controler.dart';
 import 'package:elancer_api/get/home_getx_controler.dart';
 import 'package:elancer_api/get/sup_category_proubuct_getx_controler.dart';
 import 'package:flutter/cupertino.dart';
@@ -162,7 +164,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     RatingBar.builder(
                                       itemSize: 15,
                                       glow: true,
-                                      initialRating: 3,
+                                      initialRating: SupCatPrpGetxController.to.ditiles.overalRate.toDouble(),
                                       minRating: 1,
                                       direction: Axis.horizontal,
                                       allowHalfRating: true,
@@ -199,6 +201,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   focusColor: Colors.black,
                                   isExtended: true,
                                   onPressed: () {
+                                    ApiFavoriteProductController().addFaverite(context, id: SupCatPrpGetxController.to.ditiles.id.toString());
                                     setState(() {
                                       ifaverite = !ifaverite;
                                     });
@@ -206,7 +209,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   child: Icon(
                                     Icons.favorite,
                                     size: 40,
-                                    color: ifaverite ? Colors.red : Colors.grey,
+                                    color: ifaverite||SupCatPrpGetxController.to.ditiles.isFavorite ? Colors.red : Colors.grey,
                                   ),
                                   backgroundColor: HexColor('#36596A'),
                                   tooltip: 'Add to favorites',
@@ -217,7 +220,6 @@ class _ProductScreenState extends State<ProductScreen> {
                               height: 15.h,
                             ),
                             Container(
-                              height: 350,
                               decoration: BoxDecoration(
                                   color: Colors.white10,
                                   borderRadius: BorderRadius.circular(30)),

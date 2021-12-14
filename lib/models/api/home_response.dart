@@ -1,7 +1,7 @@
 import 'package:elancer_api/models/api/category_api.dart';
 import 'package:elancer_api/models/api/product.dart';
 import 'package:elancer_api/models/api/slider.dart';
-import 'package:elancer_api/models/category.dart';
+
 
 import 'base_api_response.dart';
 

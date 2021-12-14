@@ -2,7 +2,7 @@ import 'package:align_positioned/align_positioned.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:elancer_api/get/sup_category_proubuct_getx_controler.dart';
 import 'package:elancer_api/models/latest.dart';
-import 'package:elancer_api/screens/wdget/all_prodect.dart';
+import 'package:elancer_api/screens/all_prodect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -15,6 +15,39 @@ class SupCategory extends StatefulWidget {
 }
 
 class _SupCategoryState extends State<SupCategory> {
+
+  List<dynamic> contacts = [
+    {
+
+      'name': '1',
+      'avatar': 'images/xiomi2.png',
+    },
+    {
+      'name': '2',
+      'avatar': 'images/apple.jpg',
+    },
+    {
+      'name': '3',
+      'avatar': 'images/ss.jpg',
+    },
+    {
+      'name': '4',
+      'avatar': 'images/1344920.jpg',
+    },
+    {
+      'name': '4',
+      'avatar': 'images/1344920.jpg',
+    },
+    {
+      'name': '3',
+      'avatar': 'images/ss.jpg',
+    },
+    {
+      'name': '4',
+      'avatar': 'images/1344920.jpg',
+    },
+  ];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,8 +60,6 @@ class _SupCategoryState extends State<SupCategory> {
     return Scaffold(
       backgroundColor: Color(0xFF2d3447),
       appBar: AppBar(
-        title: Text('Samsung'),
-        centerTitle: true,
         backgroundColor: Color(0xFF2d3447),
         elevation: 0,
       ),
@@ -177,32 +208,33 @@ class _SupCategoryState extends State<SupCategory> {
       ),
     );
   }
-}
-user(int index, double number) {
-  index = number ~/ 60;
+  user(int index, double number) {
+    index = number ~/ 60;
 
-  return FadeInRight(
-    delay: Duration(seconds: 1),
-    duration: Duration(milliseconds: (index * 100) + 500),
-    child: GestureDetector(
-      onTap: () {
-      },
-      child: Container(
-        margin: EdgeInsets.only(right: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Transform.rotate(
-              angle: number / 60 * 5.2,
-              child: CircleAvatar(
-                radius: 35,
-                backgroundColor: Colors.green.shade100,
-                backgroundImage: AssetImage('images/a522.jpg'),
+    return FadeInRight(
+      delay: Duration(seconds: 1),
+      duration: Duration(milliseconds: (index * 100) + 500),
+      child: GestureDetector(
+        onTap: () {
+        },
+        child: Container(
+          margin: EdgeInsets.only(right: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Transform.rotate(
+                angle: number / 60 * 5.2,
+                child: CircleAvatar(
+                  radius: 35,
+                  backgroundColor: Colors.green.shade100,
+                  backgroundImage: AssetImage(contacts[index]['avatar']),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
+

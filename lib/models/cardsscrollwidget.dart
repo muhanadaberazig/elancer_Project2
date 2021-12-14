@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:elancer_api/screens/category_screen_final.dart';
+import 'package:elancer_api/screens/home_page_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 class CardScrollWidget extends StatelessWidget {

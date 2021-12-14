@@ -1,19 +1,20 @@
 import 'package:elancer_api/helpers/helpers.dart';
 import 'package:elancer_api/screens/wdget/code_text_filed.dart';
+import 'package:elancer_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../api/auth_api_controller.dart';
-class VerificationScreen extends StatefulWidget {
+class ResetVerificationScreen extends StatefulWidget {
   late String mobile;
-   VerificationScreen({Key? key,required this.mobile}) : super(key: key);
+  ResetVerificationScreen({Key? key,required this.mobile}) : super(key: key);
 
   @override
-  _VerificationScreenState createState() => _VerificationScreenState();
+  _ResetVerificationScreenState createState() => _ResetVerificationScreenState();
 }
 
-class _VerificationScreenState extends State<VerificationScreen> with Helpers {
+class _ResetVerificationScreenState extends State<ResetVerificationScreen> with Helpers {
   late TextEditingController _emailTextController;
   late TextEditingController _firstCodeTextController;
   late TextEditingController _secondCodeTextController;
@@ -24,7 +25,6 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
   late FocusNode _thirdFocusNode;
   late FocusNode _fourthFocusNode;
   late TextEditingController _passwordTextController;
-  late TextEditingController _passwordnewTextController;
   late TextEditingController _passwordnewconfTextController;
   String? _code;
 
@@ -34,7 +34,6 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
     // TODO: implement initState
     super.initState();
     _passwordTextController=TextEditingController();
-    _passwordnewTextController=TextEditingController();
     _passwordnewconfTextController=TextEditingController();
     _emailTextController = TextEditingController();
     _firstCodeTextController = TextEditingController();
@@ -51,7 +50,6 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
   void dispose() {
     // TODO: implement dispose
     _passwordTextController.dispose();
-    _passwordnewTextController.dispose();
     _passwordnewconfTextController.dispose();
     _emailTextController.dispose();
     _firstCodeTextController.dispose();
@@ -178,47 +176,28 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
               ],
             ),
           ),
-          // SizedBox(height: 30.h),
-          // Padding(
-          //   padding:  EdgeInsets.only(left: 15.w),
-          //   child: Text(' The new password',style: TextStyle( color: HexColor('#36596A'),fontSize: 18,fontWeight: FontWeight.bold),),
-          // ),
-          // SizedBox(height: 20.h,),
-          // Padding(
-          //   padding:  EdgeInsets.only(left: 15.w,right: 15.w),
-          //   child: TextField(
-          //     keyboardType: TextInputType.text,
-          //     controller: _passwordnewconfTextController,
-          //     obscureText: true,
-          //     decoration: InputDecoration(
-          //         enabledBorder: border(),
-          //         focusedBorder: border(borderColor: Colors.black54),
-          //         //suffixIcon:
-          //         label: Text('Password ',style: TextStyle(fontSize: 16,color: HexColor('#000000')),)
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(height: 20.h,),
-          // Padding(
-          //   padding:  EdgeInsets.only(left: 15.w),
-          //   child: Text('Confirm the new password',style: TextStyle( color: HexColor('#36596A'),fontSize: 18,fontWeight: FontWeight.bold),),
-          // ),
-          // SizedBox(height: 20.h,),
-          // Padding(
-          //   padding:  EdgeInsets.only(left: 15.w,right: 15.w),
-          //   child: TextField(
-          //     keyboardType: TextInputType.text,
-          //     controller: _passwordnewconfTextController,
-          //     obscureText: true,
-          //     decoration: InputDecoration(
-          //         enabledBorder: border(),
-          //         focusedBorder: border(borderColor: Colors.black54),
-          //         //suffixIcon:
-          //         label: Text('Password Confirmation',style: TextStyle(fontSize: 16,color: HexColor('#000000')),)
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(height: 50.h,),
+          SizedBox(height:  20.h,),
+          Padding(
+            padding:  EdgeInsets.only(left: 15.w,right: 15.w),
+            child: AppTextField(
+              label: 'Password',
+              hint: 'Password',
+              controller: _passwordTextController,
+              prefixIcon: Icons.lock,
+              obscureText: true,
+            ),
+          ),
+           SizedBox(height: 20.h),
+          Padding(
+            padding:  EdgeInsets.only(left: 15.w,right: 15.w),
+            child: AppTextField(
+              label: 'Confirm Password',
+              hint: 'Confirm Password',
+              controller: _passwordnewconfTextController,
+              prefixIcon: Icons.lock,
+              obscureText: true,
+            ),
+          ),
           Padding(
             padding:  EdgeInsets.only(left: 15.w,right: 15.w,top: 20),
             child: ElevatedButton(
@@ -243,10 +222,12 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
     }
   }
   Future<void> resetPassword() async {
-    bool status = await AuthApi().activePhone(
-      context,
-      mobile: widget.mobile,
-      code: _code!,
+    print(widget.mobile);
+    bool status = await AuthApi().resetPassword(
+        context,
+        mobile: widget.mobile,
+        code: _code!,
+        password: _passwordTextController.text,
     );
     if (status) Navigator.of(context).pushNamed("/login_screen");
   }
@@ -254,9 +235,21 @@ class _VerificationScreenState extends State<VerificationScreen> with Helpers {
     if (_firstCodeTextController.text.isNotEmpty &&
         _secondCodeTextController.text.isNotEmpty &&
         _thirdCodeTextController.text.isNotEmpty &&
-        _fourthCodeTextController.text.isNotEmpty) {
-      getVerificationCode();
-      return true;
+        _fourthCodeTextController.text.isNotEmpty&&
+    _passwordTextController.text.isNotEmpty&&
+        _passwordnewconfTextController.text.isNotEmpty)
+    {
+      if(_passwordTextController.text ==_passwordnewconfTextController.text){
+        getVerificationCode();
+        return true;
+      }else {
+        showSnackBar(
+          context: context,
+          message: 'Passwords do not match',
+          error: true,
+        );
+        return false;
+      }
     }
     showSnackBar(
       context: context,

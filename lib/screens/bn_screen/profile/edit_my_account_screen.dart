@@ -35,7 +35,7 @@
 //
 //   @override
 //   void initState() {
-//     // dropdownvalue = SharedPrefController().cityName;
+//     dropdownvalue = SharedPrefController().cityName;
 //     // getData();
 //     _userNametextEditingController = TextEditingController();
 //     currentPasswordEditingController = TextEditingController();
@@ -178,28 +178,28 @@
 //                 "City",
 //                 style: TextStyle(fontSize: 12.sp, color: Colors.amber),
 //               ),
-//              // !CityrGetxController.to.loading.value?DropdownButton(
-//              //    value: dropdownvalue,
-//              //    icon: Icon(Icons.keyboard_arrow_down),
-//              //    underline: SizedBox(),
-//              //    items: items.map((String items) {
-//              //      return DropdownMenuItem(value: items, child: Text(items));
-//              //    }).toList(),
-//              //    onChanged: (value) {
-//              //      setState(() {
-//              //        dropdownvalue = value.toString();
-//              //        for (int i = 0; i < items.length; i++) {
-//              //          if (dropdownvalue == items[i]) {
-//              //            int j = i + 1;
-//              //            setState(() {
-//              //              indexcity = j.toString();
-//              //              print("city selected " + indexcity);
-//              //            });
-//              //          }
-//              //        }
-//              //      });
-//              //    },
-//              //  ):CircularProgressIndicator(),
+//              !CityrGetxController.to.loading.value?DropdownButton(
+//                 value: dropdownvalue,
+//                 icon: Icon(Icons.keyboard_arrow_down),
+//                 underline: SizedBox(),
+//                 items: items.map((String items) {
+//                   return DropdownMenuItem(value: items, child: Text(items));
+//                 }).toList(),
+//                 onChanged: (value) {
+//                   setState(() {
+//                     dropdownvalue = value.toString();
+//                     for (int i = 0; i < items.length; i++) {
+//                       if (dropdownvalue == items[i]) {
+//                         int j = i + 1;
+//                         setState(() {
+//                           indexcity = j.toString();
+//                           print("city selected " + indexcity);
+//                         });
+//                       }
+//                     }
+//                   });
+//                 },
+//               ):CircularProgressIndicator(),
 //               SizedBox(
 //                 height: 5.h,
 //               ),

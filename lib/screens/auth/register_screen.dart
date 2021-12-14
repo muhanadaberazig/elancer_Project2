@@ -24,9 +24,10 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
   late TextEditingController _emailTextController;
   late TextEditingController _passwordTextController;
   late Future<List<CityData>> _future;
+  List<CityData> city = [];
   String _select = 'M';
   String _selected = '1';
-  List<CityData> city = [];
+
   bool createDrop=false;
   late CityData dropdownvalue ;
  late String indexcity ;

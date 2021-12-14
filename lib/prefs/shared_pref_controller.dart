@@ -1,8 +1,9 @@
+import 'package:elancer_api/models/city/model_city_todata.dart';
 import 'package:elancer_api/models/student.dart';
 import 'package:elancer_api/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum PrefKeys { loggedIn,loggout, name,id,cityEn,cityAr,them,language,mobile, password, gender, token ,}
+enum PrefKeys { loggedIn,loggout, name,id,cityEn,cityAr,them,language,mobile, password, gender, token }
 
 class SharedPrefController {
   static final SharedPrefController _instance = SharedPrefController._();
@@ -32,6 +33,12 @@ class SharedPrefController {
     await _sharedPreferences.setString(PrefKeys.gender.toString(), user.gender);
     await _sharedPreferences.setString(PrefKeys.token.toString(), 'Bearer ' + user.token);
   }
+  Future<void> updateProfile ({required String fullname,required String genderM,required CityData cityData  }) async {
+    await _sharedPreferences.setString(PrefKeys.cityAr.toString(),cityData.nameAr);
+    await _sharedPreferences.setString(PrefKeys.cityEn.toString(),cityData.nameEn);
+    await _sharedPreferences.setString(PrefKeys.name.toString(),fullname);
+    await _sharedPreferences.setString(PrefKeys.gender.toString(), genderM);
+  }
 
   bool get loggedIn =>
       _sharedPreferences.getBool(PrefKeys.loggedIn.toString()) ?? false;
@@ -42,6 +49,18 @@ class SharedPrefController {
 
   String get token =>
       _sharedPreferences.getString(PrefKeys.token.toString()) ?? '';
+
+  String get name =>
+  _sharedPreferences.getString(PrefKeys.name.toString())??'';
+
+  String get mobile =>
+  _sharedPreferences.getString(PrefKeys.mobile.toString())??'';
+
+  String get gender =>
+  _sharedPreferences.getString(PrefKeys.gender.toString())??'';
+
+  String get city  =>
+  _sharedPreferences.getString(PrefKeys.cityAr.toString())??'';
 
   Future<bool> clear() async {
     return await _sharedPreferences.clear();
