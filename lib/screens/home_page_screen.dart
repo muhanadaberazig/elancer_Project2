@@ -1,4 +1,5 @@
 import 'package:elancer_api/api/auth_api_controller.dart';
+import 'package:elancer_api/get/cotegory_getx_contrelor.dart';
 import 'package:elancer_api/get/faverite_gtex_controler.dart';
 import 'package:elancer_api/get/home_getx_controler.dart';
 import 'package:elancer_api/get/sup_category_proubuct_getx_controler.dart';
@@ -39,6 +40,7 @@ class _HomePageState extends State<HomePage> {
   HomeGetxController _homeGetxController = Get.put(HomeGetxController());
   SupCatPrpGetxController _SupCatPrpGetxController = Get.put(SupCatPrpGetxController());
   FaveriteGetxControler _FaveriteGetxControler = Get.put(FaveriteGetxControler());
+  CategoryGetxControler _CategoryGetxControler = Get.put(CategoryGetxControler());
   bool logout = false;
 //  List<String> images = [];
   var currentPage;
@@ -197,14 +199,14 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )
                           : HomeGetxController.to.loading
-                              ? Center(
+                              ? const Center(
                                   child: CircularProgressIndicator(),
                                 )
                               : Center(
                                   child: Padding(
                                     padding: EdgeInsets.only(top: 250.h),
                                     child: Column(
-                                      children: [
+                                      children: const [
                                         Icon(
                                           Icons.error,
                                           size: 100,
@@ -363,7 +365,7 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 250.h),
                   child: Column(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.error,
                         size: 100,

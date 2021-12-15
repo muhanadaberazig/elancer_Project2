@@ -1,6 +1,7 @@
 import 'package:elancer_api/get/cotegory_getx_contrelor.dart';
 import 'package:elancer_api/get/sup_category_proubuct_getx_controler.dart';
 import 'package:elancer_api/models/latest.dart';
+import 'package:elancer_api/screens/sup_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -32,22 +33,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
           itemCount: CategoryGetxControler.to.category.value.length,
           itemBuilder: (context, index) {
             return InkWell(
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => AllProdect(
-              //         id:  CategoryGetxControler.to.category.value[index].id,
-              //       ),
-              //     ),
-              //   );
-              // },
-              child: Favourites(title: SupCatPrpGetxController.to.supCategory[index].nameEn,imageUrl: SupCatPrpGetxController.to.supCategory[index].imageUrl,price: 15,quantity: SupCatPrpGetxController.to.supCategory[index].productsCount,),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SupCategory(
+                      id:  CategoryGetxControler.to.category.value[index].id,
+                    ),
+                  ),
+                );
+              },
+              child: Favourites(title: CategoryGetxControler.to.category[index].nameEn,imageUrl: CategoryGetxControler.to.category.value[index].imageUrl,price: 15,quantity: 25,),
             );
           },
         ):
-        !SupCatPrpGetxController.to.loadingsupCategory.value &&
-            SupCatPrpGetxController.to.supCategory.value.isEmpty
+        !CategoryGetxControler.to.loadingsupCategory.value &&
+            CategoryGetxControler.to.category.value.isEmpty
             ? Center(
           child: Column(
             children: const [

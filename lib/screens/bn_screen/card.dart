@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:elancer_api/api/controllers/api_favorite_products_controler.dart';
 import 'package:elancer_api/get/faverite_gtex_controler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +41,21 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                   ? ListView.builder(
                 itemCount: FaveriteGetxControler.to.supCategory.length,
                 itemBuilder: (context, index) {
-                  return Container(
+                  return
+                    Dismissible(
+                      background: const Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                  )),
+                  key: UniqueKey(),
+                  onDismissed: (direction) async {
+                    ApiFavoriteProductController().addFaverite(context, id: FaveriteGetxControler.to.supCategory.value[index].id.toString());
+
+                  },
+                      child:
+                    Container(
                     height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -62,7 +77,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                         selectedTileColor: Colors.red,
                       ),
                     ),
-                  );
+                  ));
                 },
               )
                   : !FaveriteGetxControler.to.loadingsupCategory.value &&

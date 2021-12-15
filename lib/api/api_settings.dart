@@ -12,6 +12,7 @@ class ApiSettings {
   static const changePassword = _apiUrl + 'auth/change-password';
   static const updateProfile = _apiUrl + 'auth/update-profile';
   static const faqs = _apiUrl + 'faqs';
+  static const contactRequests= _apiUrl +'contact-requests';
   static const logout = _apiUrl + 'auth/logout';
   static const storeApiKey ="0f035133-b3f9-47a4-8889-ee8afa38d1b3";
   static const cities= _apiUrl +'cities';

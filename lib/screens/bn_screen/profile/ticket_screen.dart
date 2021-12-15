@@ -1,4 +1,6 @@
+import 'package:elancer_api/api/controllers/qa_api_controller.dart';
 import 'package:elancer_api/helpers/helpers.dart';
+import 'package:elancer_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -127,12 +129,11 @@ class _TicketScreenState extends State<TicketScreen> with Helpers {
                   SizedBox(
                     height: 12.h,
                   ),
-                  // AppTextField(
-                  //   hint: "Problem in Payment method",
-                  //   textEditingController: _textEditingController,
-                  //   prefixIcon: Icons.add,
-                  //   ticket: false,
-                  // ),
+                  AppTextField(
+                    hint: "Problem in Payment method",
+                    controller: _textEditingController,
+                    prefixIcon: Icons.add, label: '',
+                  ),
                   SizedBox(
                     height: 27.h,
                   ),
@@ -146,22 +147,21 @@ class _TicketScreenState extends State<TicketScreen> with Helpers {
                   SizedBox(
                     height: 12.h,
                   ),
-                  // AppTextField(
-                  //   hint:
-                  //       "All of them! USPS, UPS, and Fedex are all options that can gather real time weights for your packages. I always recommend USPS because it’s fairly easy to set up and integrate. The most complicated is the Fedex extension. ",
-                  //   textEditingController: _maseegeTextEditingController,
-                  //   prefixIcon: Icons.add,
-                  //   ticket: false,
-                  //   line: 7,
-                  // ),
+                  AppTextField(
+                    hint:
+                        "All of them! USPS, UPS, and Fedex are all options that can gather real time weights for your packages. I always recommend USPS because it’s fairly easy to set up and integrate. The most complicated is the Fedex extension. ",
+                    controller: _maseegeTextEditingController,
+                    prefixIcon: Icons.add,
+                  label: "",
+                  ),
                   SizedBox(
                     height: 40.h,
                   ),
                   Container(
                     margin: EdgeInsets.only(bottom: 30.h),
                     child: ElevatedButton(
-                      onPressed: (){},
-                      // async => await performSendQ(),
+                      onPressed:() async => await performSendQ(),
+
                       child: Text(
                         "SEND",
                         style: TextStyle(
@@ -186,33 +186,33 @@ class _TicketScreenState extends State<TicketScreen> with Helpers {
     );
   }
 
-  // Future<void> performSendQ() async {
-  //   if (checkData()) {
-  //     await SENDQ();
-  //   }
-  // }
+  Future<void> performSendQ() async {
+    if (checkData()) {
+      await SENDQ();
+    }
+  }
 
-  // bool checkData() {
-  //   if (_textEditingController.text.isNotEmpty &&
-  //       _maseegeTextEditingController.text.isNotEmpty) {
-  //     return true;
-  //   }
-  //   showSnackBar(
-  //     context: context,
-  //     message: 'Enter required data!',
-  //     error: true,
-  //   );
-  //   return false;
-  // }
+  bool checkData() {
+    if (_textEditingController.text.isNotEmpty &&
+        _maseegeTextEditingController.text.isNotEmpty) {
+      return true;
+    }
+    showSnackBar(
+      context: context,
+      message: 'Enter required data!',
+      error: true,
+    );
+    return false;
+  }
 
-  // Future<void> SENDQ() async {
-  //   bool status = await QAApiController().sendQ(context,
-  //       Subject: _textEditingController.text,
-  //       Message: _maseegeTextEditingController.text);
-  //   if (status) {
-  //     clear();
-  //   }
-  // }
+  Future<void> SENDQ() async {
+    bool status = await QAApiController().sendQ(context,
+        Subject: _textEditingController.text,
+        Message: _maseegeTextEditingController.text);
+    if (status) {
+      clear();
+    }
+  }
   void clear(){
     _maseegeTextEditingController.clear();
     _textEditingController.clear();

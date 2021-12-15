@@ -1,3 +1,4 @@
+import 'package:elancer_api/api/controllers/update_profile_api_controler.dart';
 import 'package:elancer_api/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -129,32 +130,22 @@ class _ChangePasswordState extends State<ChangePassword>  with Helpers{
       ),
     );
   }
+  // Future<void> performUpdateProfile() async {
+  //   if (checkData()) {
+  //     await ChangePasswordAndUptaeProfile();
+  //   }
+  // }
+  // Future<void> ChangePasswordAndUptaeProfile() async {
+  //   bool status = await UpdateProfileApiController().changePassword(context,
+  //       carantPass: currentPasswordEditingController.text,
+  //       comfirmPass: confirmationPasswordEditingController.text,
+  //       newPass: newPasswordEditingController.text);
+  //   if (status) {
+  //     Navigator.pop(context);
+  //   }
+  // }
+
 }
-// Future<void> performChangePassword() async {
-//   if (checkData()) {
-//     await changePassword();
-//   }
-// }
-//
-// bool checkData() {
-//   if (_passwordnewTextController.text.isNotEmpty) {
-//     return true;
-//   }
-//   showSnackBar(
-//     context: context,
-//     message: 'Enter required data!',
-//     error: true,
-//   );
-//   return false;
-// }
-//
-// Future<void> changePassword() async {
-//   bool status = await AuthApiController().forgetPassword(
-//     context,
-//     email: _emailTextController.text,
-//   );
-//   if (status) Navigator.pushReplacementNamed(context, '/categories_screen');
-// }
 
 OutlineInputBorder border({Color borderColor = Colors.grey}) {
   return OutlineInputBorder(

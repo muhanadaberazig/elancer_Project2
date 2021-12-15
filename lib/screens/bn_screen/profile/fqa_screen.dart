@@ -1,3 +1,5 @@
+import 'package:elancer_api/api/controllers/qa_api_controller.dart';
+import 'package:elancer_api/models/api/api_fqa.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,13 +13,13 @@ class FQAScreen extends StatefulWidget {
 
 class _FQAScreenState extends State<FQAScreen> {
   late TextEditingController _textEditingController;
-  // late Future<List<FAQs>> _future;
-  // List<FAQs> _categories = <FAQs>[];
+   late Future<List<FAQs>> _future;
+   List<FAQs> _categories = <FAQs>[];
 
   @override
   void initState() {
     _textEditingController = TextEditingController();
-    // _future = QAApiController().getFAQs();
+     _future = QAApiController().getFAQs();
     // TODO: implement initState
     super.initState();
   }
@@ -117,59 +119,59 @@ class _FQAScreenState extends State<FQAScreen> {
           SizedBox(
             height: 24.h,
           ),
-          // Expanded(
-          //   child: FutureBuilder<List<FAQs>>(
-          //     future: _future,
-          //     builder: (context, snapshot) {
-          //       if (snapshot.connectionState == ConnectionState.waiting) {
-          //         return Center(child: CircularProgressIndicator());
-          //       } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-          //         _categories = snapshot.data ?? [];
-          //         return ListView.builder(
-          //           itemCount: _categories.length,
-          //           padding: EdgeInsets.symmetric(horizontal: 10.w),
-          //           itemBuilder: (context, index) {
-          //             return Container(
-          //               margin: EdgeInsets.only(bottom: 30.h),
-          //               child: ListTile(
-          //                 title: Text(
-          //                   _categories[index].questionEn,
-          //                   style: TextStyle(
-          //                       color: color1,
-          //                       fontSize: 16.sp,
-          //                       fontWeight: FontWeight.w700),
-          //                 ),
-          //                 subtitle: Container(
-          //                   margin: EdgeInsets.only(top: 16.h),
-          //                   child: Text(
-          //                     _categories[index].answerEn,
-          //                     style: TextStyle(fontSize: 12.sp, color: color3),
-          //                   ),
-          //                 ),
-          //               ),
-          //             );
-          //           },
-          //         );
-          //       } else {
-          //         return Center(
-          //           child: Column(
-          //             children: const [
-          //               Icon(Icons.warning, size: 80),
-          //               Text(
-          //                 'NO DATA',
-          //                 style: TextStyle(
-          //                   color: Colors.grey,
-          //                   fontWeight: FontWeight.bold,
-          //                   fontSize: 24,
-          //                 ),
-          //               )
-          //             ],
-          //           ),
-          //         );
-          //       }
-          //     },
-          //   ),
-          // ),
+          Expanded(
+            child: FutureBuilder<List<FAQs>>(
+              future: _future,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                  _categories = snapshot.data ?? [];
+                  return ListView.builder(
+                    itemCount: _categories.length,
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 30.h),
+                        child: ListTile(
+                          title: Text(
+                            _categories[index].questionEn,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          subtitle: Container(
+                            margin: EdgeInsets.only(top: 16.h),
+                            child: Text(
+                              _categories[index].answerEn,
+                              style: TextStyle(fontSize: 12.sp, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return Center(
+                    child: Column(
+                      children: const [
+                        Icon(Icons.warning, size: 80),
+                        Text(
+                          'NO DATA',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: 5,
