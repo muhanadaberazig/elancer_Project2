@@ -25,14 +25,12 @@ class AuthApi with ApiHelper,Helpers {
       'STORE_API_KEY': ApiSettings.storeApiKey,
       'city_id': clinet.city_id
     });
-    print("ahmed "+jsonDecode(response.body).toString());
     if (response.statusCode == 201) {
       {
-        // showSnackBar(
-        //   context: context,
-        //   message: jsonDecode(response.body)['message'],
-        // );
-        print(jsonDecode(response.body)['code']);
+        showSnackBar(
+          context: context,
+          message: jsonDecode(response.body)['message'],
+        );
 
         return true;
       }
@@ -132,7 +130,6 @@ Future<bool> activePhone(BuildContext context,
     );
 
     if (response.statusCode == 200) {
-      print(jsonDecode(response.body)['code']);
       return true;
     } else if (response.statusCode == 400) {
       showSnackBar(

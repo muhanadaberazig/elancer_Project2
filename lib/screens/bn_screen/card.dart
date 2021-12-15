@@ -20,8 +20,6 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
   List<int> cartItemCount = [1, 1, 1, 1];
   int totalPrice = 0;
 
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -33,75 +31,80 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFF2d3447),
-        body:Obx((){
-          return  Padding(
+        body: Obx(() {
+          return Padding(
               padding: const EdgeInsets.only(top: 15),
               child: !FaveriteGetxControler.to.loadingsupCategory.value &&
-                  FaveriteGetxControler.to.supCategory.isNotEmpty
+                      FaveriteGetxControler.to.supCategory.isNotEmpty
                   ? ListView.builder(
-                itemCount: FaveriteGetxControler.to.supCategory.length,
-                itemBuilder: (context, index) {
-                  return
-                    Dismissible(
-                      background: const Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                  )),
-                  key: UniqueKey(),
-                  onDismissed: (direction) async {
-                    ApiFavoriteProductController().addFaverite(context, id: FaveriteGetxControler.to.supCategory.value[index].id.toString());
-
-                  },
-                      child:
-                    Container(
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: HexColor('#36596A'),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 20, left: 8),
-                      child: ListTile(
-                        title: Text(FaveriteGetxControler.to.supCategory[index].nameEn),
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            FaveriteGetxControler.to.supCategory[index].imageUrl,
-                            fit: BoxFit.cover,
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                        selectedTileColor: Colors.red,
-                      ),
-                    ),
-                  ));
-                },
-              )
-                  : !FaveriteGetxControler.to.loadingsupCategory.value &&
-                  FaveriteGetxControler.to.supCategory.isEmpty
-                  ? Center(
-                child: Column(
-                  children: const [
-                    Icon(Icons.warning, size: 80),
-                    Text(
-                      'NO DATA',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
+                      itemCount: FaveriteGetxControler.to.supCategory.length,
+                      itemBuilder: (context, index) {
+                        return
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Dismissible(
+                              background: const Align(
+                                  alignment: AlignmentDirectional.centerEnd,
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                  )),
+                              key: UniqueKey(),
+                              onDismissed: (direction) async {
+                                ApiFavoriteProductController().addFaverite(
+                                    context,
+                                    id: FaveriteGetxControler
+                                        .to.supCategory.value[index].id
+                                        .toString());
+                              },
+                              child: Container(
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: HexColor('#36596A'),
+                                ),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20, left: 8),
+                                  child: ListTile(
+                                    title: Text(FaveriteGetxControler
+                                        .to.supCategory[index].nameEn),
+                                    leading: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        FaveriteGetxControler
+                                            .to.supCategory[index].imageUrl,
+                                        fit: BoxFit.cover,
+                                        height: 100,
+                                        width: 100,
+                                      ),
+                                    ),
+                                    selectedTileColor: Colors.red,
+                                  ),
+                                ),
+                              )),
+                          );
+                      },
                     )
-                  ],
-                ),
-              )
-                  : Center(child: CircularProgressIndicator()));
-        })
-
-
-    );
+                  : !FaveriteGetxControler.to.loadingsupCategory.value &&
+                          FaveriteGetxControler.to.supCategory.isEmpty
+                      ? Center(
+                          child: Column(
+                            children: const [
+                              Icon(Icons.warning, size: 80),
+                              Text(
+                                'NO DATA',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      : Center(child: CircularProgressIndicator()));
+        }));
   }
 
 // cartItem() {

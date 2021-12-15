@@ -23,7 +23,6 @@ class CategoryGetxControler extends GetxController{
     loadingsupCategory = true.obs;
     category.value= await _apiController.getCategories();
     loadingsupCategory.value = false;
-    print("getSupCategory1"+category.value.length.toString());
     // notifyListeners();
     // update();
   }

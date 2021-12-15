@@ -21,7 +21,6 @@ class QAApiController with Helpers{
       HttpHeaders.authorizationHeader:SharedPrefController().token,
     }
     );
-    print("ahmed"+response.statusCode.toString());
     if (response.statusCode == 201) {
       showSnackBar(
         context: context,
@@ -46,9 +45,7 @@ class QAApiController with Helpers{
          , HttpHeaders.acceptHeader: 'application/json',
     }
     );
-    print("getFavorite"+response.statusCode.toString());
     if (response.statusCode == 200) {
-      print("getFavorite"+jsonDecode(response.body)['list'].toString());
 
       var categoriesJsonArray = jsonDecode(response.body)['list'] as List;
       return categoriesJsonArray

@@ -110,7 +110,7 @@ class _MainScreenState extends State<MainScreen> {
                     Navigator.pushNamed(context, '/fqa_screen');
                   },
                   leading: const Icon(Iconsax.message_question),
-                  title: const Text('FQA'),
+                  title: const Text('FAQS'),
                 ),
                 SizedBox(height: 20.h,),
                 ListTile(

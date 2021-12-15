@@ -3,6 +3,7 @@ import 'package:elancer_api/helpers/helpers.dart';
 import 'package:elancer_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 
 class TicketScreen extends StatefulWidget {
@@ -36,123 +37,86 @@ class _TicketScreenState extends State<TicketScreen> with Helpers {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:  Color(0xFF2d3447),
+      appBar: AppBar(
+        backgroundColor:    Color(0xFF2d3447),
+        elevation: 0,
+        title: const Text('Sending A Message'),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 300.h,
-              child: Card(
-                elevation: 5.w,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(15.h),
-                      bottomLeft: Radius.circular(15.h)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 28.w),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 55.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                  //  margin: EdgeInsets.only(left: 28.w, right: 28.w, top: 55.h),
-                                  height: 38.h,
-                                  width: 38.w,
-                                  decoration: BoxDecoration(
-                                      color:  Color(0xFF2d3447),
-                                      borderRadius: BorderRadius.circular(19.w)),
-                                  child:Icon(Icons.eighteen_mp)),
-                            ),
-                            const Text("Ticket"),
-                            Container(
-                              //    margin: EdgeInsets.only(left: 28.w, right: 28.w, top: 55.h),
-                              height: 38.h,
-                              width: 38.w,
-                              decoration: BoxDecoration(
-                                  //   border: Border.all(width: 1.w, color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(19.w)),
-                              // child: const Center(child: Icon(Icons.more_vert)),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 53.h,
-                      ),
-                      Text(
-                        "Hello! How can we\n help you?",
-                        style: TextStyle(
-                            color:  Color(0xFF2d3447),
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.w700),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                        height: 11.h,
-                      ),
-                      Text(
-                        "Press the heart button\n to add an hotel. ",
-                        style: TextStyle(color: Color(0xFF2d3447), fontSize: 12.sp),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                    ],
-                  ),
-                ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 28.w,vertical: 20.h),
+
+                   child:  Text(
+                      "Hey,do you have any questions or comments,send them to us?",
+                      style: TextStyle(
+                          color: HexColor('#36596A'),
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700),
+                      textAlign: TextAlign.center,
+                    ),
+
               ),
             ),
-            SizedBox(
-              height: 28.h,
+            Container(
+                width: 330.w,
+                height: 200.h,
+                margin: const EdgeInsets.only(
+                  left: 20,
+                  top: 24.0,
+                ),
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                child: Image.asset('images/logo.png')
             ),
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Subject",
                     style: TextStyle(
-                        color: Color(0xFF2d3447),
-                        fontSize: 16.sp,
+                        color: Colors.black,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700),
                   ),
                   SizedBox(
                     height: 12.h,
                   ),
                   AppTextField(
-                    hint: "Problem in Payment method",
+                    hint: '',
                     controller: _textEditingController,
                     prefixIcon: Icons.add, label: '',
                   ),
                   SizedBox(
-                    height: 27.h,
+                    height: 20.h,
                   ),
-                  Text(
+                  const Text(
                     "Message",
                     style: TextStyle(
-                        color:  Color(0xFF2d3447),
-                        fontSize: 16.sp,
+                        color: Colors.black,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700),
                   ),
                   SizedBox(
                     height: 12.h,
                   ),
                   AppTextField(
-                    hint:
-                        "All of them! USPS, UPS, and Fedex are all options that can gather real time weights for your packages. I always recommend USPS because it’s fairly easy to set up and integrate. The most complicated is the Fedex extension. ",
+                    hint: '',
                     controller: _maseegeTextEditingController,
-                    prefixIcon: Icons.add,
-                  label: "",
+                    prefixIcon: Icons.add, label: '',
+                  ),
+                  SizedBox(
+                    height: 27.h,
                   ),
                   SizedBox(
                     height: 40.h,
@@ -165,12 +129,13 @@ class _TicketScreenState extends State<TicketScreen> with Helpers {
                       child: Text(
                         "SEND",
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 18,
+                          color: Colors.black
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(double.infinity, 60.h),
-                        primary:  Color(0xFF2d3447),
+                        primary: HexColor('#36596A'),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30.w)),
                         ),
@@ -193,8 +158,7 @@ class _TicketScreenState extends State<TicketScreen> with Helpers {
   }
 
   bool checkData() {
-    if (_textEditingController.text.isNotEmpty &&
-        _maseegeTextEditingController.text.isNotEmpty) {
+    if (_textEditingController.text.isNotEmpty&&_maseegeTextEditingController.text.isNotEmpty ) {
       return true;
     }
     showSnackBar(

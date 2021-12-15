@@ -26,6 +26,7 @@ class AppTextField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       decoration: InputDecoration(
+
         label: Text(label,style: TextStyle(fontSize: 17,color: HexColor('#000000'))),
         prefixIcon: Icon(prefixIcon,color:HexColor('#36596A') ,),
         enabledBorder: border(),
