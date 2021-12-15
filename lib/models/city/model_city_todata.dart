@@ -16,7 +16,7 @@ class CityData{
     nameAr = json['nameEn'];
   }
 
-  ///Used to save data in a database table.
+
   Map<String, dynamic> toMap() {
     Map<String, dynamic> rowMap = <String, dynamic>{};
     rowMap['nameEn'] = nameEn;

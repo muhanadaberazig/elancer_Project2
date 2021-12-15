@@ -220,39 +220,29 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                       SizedBox(
-                        height: 15.h,
+                        height: 20.h,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: 120.w,
-                              decoration: BoxDecoration(
-                                color: HexColor('#36596A'),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 22.0.h, vertical: 6.0.w),
-                                child: const Center(
-                                  child: Text(
-                                    "Latest",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
+                        child: Container(
+                          width: 120.w,
+                          decoration: BoxDecoration(
+                            color: HexColor('#36596A'),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 22.0.h, vertical: 6.0.w),
+                            child: const Center(
+                              child: Text(
+                                "Latest",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            IconButton(
-                              icon: Icon(Icons.more_horiz_outlined,
-                                  size: 40, color: HexColor('#36596A')),
-                              onPressed: () {},
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -298,39 +288,29 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       SizedBox(
-                        height: 15.h,
+                        height: 20.h,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: 120.w,
-                              decoration: BoxDecoration(
-                                color: HexColor('#36596A'),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 22.0.h, vertical: 6.0.w),
-                                child: const Center(
-                                  child: Text(
-                                    "Famous",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
+                        child: Container(
+                          width: 120.w,
+                          decoration: BoxDecoration(
+                            color: HexColor('#36596A'),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 22.0.h, vertical: 6.0.w),
+                            child: const Center(
+                              child: Text(
+                                "Famous",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            IconButton(
-                              icon: Icon(Icons.more_horiz_outlined,
-                                  size: 40, color: HexColor('#36596A')),
-                              onPressed: () {},
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(

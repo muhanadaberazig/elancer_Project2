@@ -10,15 +10,16 @@ class OutBoardingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
+    return AnimatedContainer(
       width: selected? 20.w:7.w,
-      height: selected ? 5.h:7.h,
+      height:  5.h,
+        duration: Duration(seconds: 1),
       decoration: BoxDecoration(
-        color: selected? Colors.black:Colors.grey ,
-        borderRadius: BorderRadius.circular(30)
+          color: selected? Colors.black:Colors.grey ,
+          borderRadius: BorderRadius.circular(30),
       ),
       margin: EdgeInsets.all(margin),
-    );
+
+      );
   }
 }

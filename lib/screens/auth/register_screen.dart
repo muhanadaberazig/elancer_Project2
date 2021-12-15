@@ -2,7 +2,6 @@ import 'package:elancer_api/api/controllers/home_api_controler.dart';
 import 'package:elancer_api/helpers/helpers.dart';
 import 'package:elancer_api/models/city/model_city_todata.dart';
 import 'package:elancer_api/models/register.dart';
-import 'package:elancer_api/models/student.dart';
 import 'package:elancer_api/screens/auth/password/verification.dart';
 import 'package:elancer_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
   late TextEditingController _fullNameTextController;
   late TextEditingController _emailTextController;
   late TextEditingController _passwordTextController;
+  late TextEditingController _passwordConTextController;
   late Future<List<CityData>> _future;
   List<CityData> city = [];
   String _select = 'M';
@@ -40,6 +40,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
     _fullNameTextController = TextEditingController();
     _emailTextController = TextEditingController();
     _passwordTextController = TextEditingController();
+    _passwordConTextController = TextEditingController();
   }
 
   @override
@@ -48,6 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
     _fullNameTextController.dispose();
     _emailTextController.dispose();
     _passwordTextController.dispose();
+    _passwordConTextController.dispose();
     super.dispose();
   }
 
@@ -107,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
           AppTextField(
             label: 'Confirm Password',
             hint: 'Confirm Password',
-            controller: _passwordTextController,
+            controller: _passwordConTextController,
             prefixIcon: Icons.lock,
             obscureText: true,
           ),
@@ -280,7 +282,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
   bool checkData() {
     if (_fullNameTextController.text.isNotEmpty &&
         _emailTextController.text.isNotEmpty &&
-        _passwordTextController.text.isNotEmpty) {
+        _passwordTextController.text.isNotEmpty&&_passwordConTextController.text.isNotEmpty) {
 
     }
     showSnackBar(

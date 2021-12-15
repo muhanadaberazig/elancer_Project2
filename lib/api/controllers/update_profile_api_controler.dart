@@ -28,7 +28,6 @@ class UpdateProfileApiController with Helpers {
       //TODO: SHARED PREFERENCES - SAVE LOGGED IN USER DATA!!
       return true;
     } else if (response.statusCode == 400) {
-      print("ahmed11");
       showSnackBar(
         context: context,
         message: jsonDecode(response.body)['message'],

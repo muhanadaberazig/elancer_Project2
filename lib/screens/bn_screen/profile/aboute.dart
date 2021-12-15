@@ -14,7 +14,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
     return  Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [HexColor('#17D4C3'), HexColor('#1FA0BD')])
+                colors: [Color(0xFF2d3447), HexColor('#36596A')])
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -26,10 +26,10 @@ class _AbouteScreenState extends State<AbouteScreen> {
                 ),
                 CircleAvatar(
                   radius: 100,
-                  backgroundColor: HexColor('#b2ae53'),
+                  backgroundColor: Colors.white12,
 
                   child: const CircleAvatar(
-                    backgroundImage: AssetImage('images/mo.jpeg'),
+                    backgroundImage: AssetImage('images/as.JPG'),
                     radius: 90,
                   ),
                 ),
@@ -51,7 +51,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
                   elevation: 10,
                   shadowColor: HexColor('#b2ae53'),
                   child:  ListTile(
-                    leading: Icon(Icons.person,color: HexColor('#b2ae53'),),
+                    leading: Icon(Icons.person,color: HexColor('#36596A'),),
                     title: InkWell(
                       onTap: () => _launchEmail(),
                       child: const Text(
@@ -60,6 +60,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
                           fontWeight: FontWeight.normal,
                           fontSize: 22,
                           letterSpacing: 1,
+
                         ),
                       ),
                     ),
@@ -76,7 +77,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
                     elevation: 10,
                     shadowColor: HexColor('#b2ae53'),
                     child:  ListTile(
-                      leading: Icon(Icons.email_sharp,color: HexColor('#b2ae53'),),
+                      leading: Icon(Icons.email_sharp,color: HexColor('#36596A'),),
                       title: InkWell(
                         onTap: () => _launchEmail(),
                         child: const Text(
@@ -91,7 +92,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
                       subtitle: Text('nmnm8957@gmail.com'),
                       trailing: Icon(
                         Icons.send_sharp,
-                        color: HexColor('#b2ae53'),
+                        color: HexColor('#36596A'),
                       ),
                     ),
                   ),
@@ -108,7 +109,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
                     elevation: 10,
                     shadowColor: HexColor('#b2ae53'),
                     child:  ListTile(
-                      leading: Icon(Icons.call,color: HexColor('#b2ae53'),),
+                      leading: Icon(Icons.call,color: HexColor('#36596A'),),
                       title: const Text(
                         'Number :',
                         style: TextStyle(
@@ -122,7 +123,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
                         onTap: () => calling(),
                         child: Icon(
                           Icons.phone_android,
-                          color:HexColor('#b2ae53'),
+                          color:HexColor('#36596A'),
                         ),
                       ),
                     ),
@@ -137,7 +138,7 @@ class _AbouteScreenState extends State<AbouteScreen> {
                     elevation: 10,
                     shadowColor: HexColor('#b2ae53'),
                     child:  ListTile(
-                      leading: Icon(Icons.note,color: HexColor('#b2ae53'),),
+                      leading: Icon(Icons.note,color: HexColor('#36596A'),),
                       title: const Text(
                         'Project in Githup:',
                         style: TextStyle(
@@ -146,12 +147,12 @@ class _AbouteScreenState extends State<AbouteScreen> {
                           letterSpacing: 1,
                         ),
                       ),
-                      subtitle: const Text('elancer_project1'),
+                      subtitle: const Text('elancer_project2'),
                       trailing: InkWell(
                         onTap: () => git(),
                         child: Icon(
                           Icons.note,
-                          color:HexColor('#b2ae53'),
+                          color:HexColor('#36596A'),
                         ),
                       ),
                     ),
@@ -179,7 +180,7 @@ calling()async{
   }
 }
 git()async{
-  const url = 'https://github.com/muhanadaberazig/elancer_project1';
+  const url = 'https://github.com/muhanadaberazig/elancer_Project2';
   if( await canLaunch(url)){
     await launch(url);
   }else{

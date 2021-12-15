@@ -19,8 +19,7 @@ class SupCatPrpGetxController extends GetxController{
     supCategory.value= await _apiController.getSupCategories(id);
     loadingsupCategory.value = false;
     print("getSupCategory1"+supCategory.value.length.toString());
-    // notifyListeners();
-    // update();
+
   }
   RxBool loadingProduct = false.obs;
   RxList<Product> product = <Product>[].obs;

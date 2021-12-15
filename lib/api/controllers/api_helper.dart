@@ -1,4 +1,3 @@
-import 'package:elancer_api/prefs/shared_pref.dart';
 import 'package:elancer_api/prefs/shared_pref_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

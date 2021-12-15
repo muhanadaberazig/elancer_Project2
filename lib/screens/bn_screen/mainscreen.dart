@@ -84,7 +84,7 @@ class _MainScreenState extends State<MainScreen> {
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(height: 15.h,),
                 Padding(
                   padding: EdgeInsets.only(left: 30.0.w),
                   child:  Text(
@@ -104,16 +104,7 @@ class _MainScreenState extends State<MainScreen> {
                   leading: Icon(Iconsax.home),
                   title: Text('My Account'),
                 ),
-                const ListTile(
-                  leading: Icon(
-                    Icons.language,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    "Language",
-                  ),
-                  trailing: Text("en"),
-                ),
+                SizedBox(height: 20.h,),
                 ListTile(
                   onTap: () {
                     Navigator.pushNamed(context, '/fqa_screen');
@@ -121,6 +112,7 @@ class _MainScreenState extends State<MainScreen> {
                   leading: const Icon(Iconsax.message_question),
                   title: const Text('FQA'),
                 ),
+                SizedBox(height: 20.h,),
                 ListTile(
                   onTap: () {
                     Navigator.pushNamed(context, '/ticket_screen');
@@ -129,7 +121,7 @@ class _MainScreenState extends State<MainScreen> {
                   title: const Text('Sending a Message'),
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 30.h,
                 ),
                 Divider(color: HexColor('#36596A')),
                 ListTile(

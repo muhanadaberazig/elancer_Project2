@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
                 Padding(
                   padding: EdgeInsets.only(left: 26.w, right: 100.w, top: 30.h),
                   child: Text(
-                    'Welcome RiKA ,',
+                    'Welcome RIKA ,',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: HexColor('#36596A'),
@@ -115,21 +115,19 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
                   )),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/forget_password_screen');
-                  },
-                  child: Text(
-                    'I forgot my password !',
-                    style: TextStyle(fontSize: 15, color: HexColor('#36596A')),
-                  )),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/forget_password_screen');
+                },
+                child: Text(
+                  'I forgot my password !',
+                  style: TextStyle(fontSize: 15, color: Colors.grey),
+                )),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 35.h),
+            padding: EdgeInsets.only(top: 30.h),
             child: TextButton(
                 onPressed: () {},
                 child: Container(
@@ -213,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
       password: _passwordTextController.text,
     );
     if (status) {
-        Navigator.pushNamed(context, '/Main_screen');
+        Navigator.pushNamed(context, '/welcome_screen');
     }
   }
 }

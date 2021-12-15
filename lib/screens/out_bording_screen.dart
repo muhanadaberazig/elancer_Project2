@@ -50,17 +50,17 @@ class _OutBordingScreenState extends State<OutBordingScreen> {
                    },
                    children: [
                      OutBordingContentet(
-                       image: 'images/out.png',
+                       image: 'images/image.png',
                        text: '20% Discount \nNew Arrival Product',
                        hinttext: 'Publish up your selfies to make yourself \nmore beautiful with this app.',
                      ),
                      OutBordingContentet(
-                       image: 'images/out2.png',
+                       image: 'images/imagee.png',
                        text: 'Take Advantage\nOf The Offer Shopping',
                        hinttext: 'Publish up your selfies to make yourself \nmore beautiful with this app.',
                      ),
                      OutBordingContentet(
-                       image: 'images/out3.png',
+                       image: 'images/ouut.png',
                        text: 'All Types Offers\nWithin Your Reach',
                        hinttext: 'Publish up your selfies to make yourself \nmore beautiful with this app.',
 

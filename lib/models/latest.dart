@@ -44,17 +44,16 @@ class Favourites extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5.h,),
+                    SizedBox(height: 20.h,),
                      Text(title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                    Text('subCategoryId',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                    SizedBox(height: 5.h,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(price.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                        Text(quantity.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
-                      ],
-                    ),
+                    // SizedBox(height: 15.h,),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: [
+                    //     Text(price.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                    //     Text(quantity.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+                    //   ],
+                    // ),
                   ],
 
                 ),
@@ -63,9 +62,6 @@ class Favourites extends StatelessWidget {
             ),
           ],
         ),
-        Align(
-            alignment: Alignment.topRight,
-            child: IconButton(onPressed: (){},icon: Icon(Icons.favorite_outline,color: HexColor('#36596A'),),))
       ],
 
 

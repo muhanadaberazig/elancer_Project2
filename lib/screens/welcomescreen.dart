@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-class LoginSignUp extends StatefulWidget {
-  const LoginSignUp({Key? key}) : super(key: key);
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginSignUpState createState() => _LoginSignUpState();
+  _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _LoginSignUpState extends State<LoginSignUp> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

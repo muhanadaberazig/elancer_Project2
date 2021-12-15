@@ -23,7 +23,7 @@ class HomeApiController with ApiHelper{
 
 
 
-  ////get city
+
   Future<List<CityData>> getCity() async {
     var url = Uri.parse(ApiSettings.cities);
     var response = await http.get(url

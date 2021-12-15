@@ -35,17 +35,14 @@ class _SupCategoryState extends State<SupCategory> {
       'avatar': 'images/1344920.jpg',
     },
     {
-      'name': '4',
-      'avatar': 'images/1344920.jpg',
+      'name': '5',
+      'avatar': 'images/lggg.png',
     },
     {
-      'name': '3',
-      'avatar': 'images/ss.jpg',
+      'name': '6',
+      'avatar': 'images/op.png',
     },
-    {
-      'name': '4',
-      'avatar': 'images/1344920.jpg',
-    },
+
   ];
 
   @override
@@ -162,46 +159,6 @@ class _SupCategoryState extends State<SupCategory> {
                 )
                     : Center(child: CircularProgressIndicator());
               }),
-    //           !SupCatPrpGetxController.to.loadingsupCategory.value &&
-    //               SupCatPrpGetxController.to.supCategory.value.isNotEmpty
-    //               ?
-    //           GridView.builder(
-    //             physics: NeverScrollableScrollPhysics(),
-    //           shrinkWrap: true,
-    //           scrollDirection: Axis.vertical,
-    //           gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-    //             crossAxisCount: 2,
-    //             crossAxisSpacing: 5.w,
-    //             mainAxisSpacing: 15.h,
-    //           ),
-    //           itemCount: SupCatPrpGetxController.to.supCategory.value.length,
-    //           itemBuilder: (context, index) {
-    //             return InkWell(
-    //               onTap: () {
-    //                 Navigator.pushNamed(context,   '/product_screen');
-    //               },
-    //               child: Favourites(title: SupCatPrpGetxController.to.supCategory[index].nameEn,imageUrl: SupCatPrpGetxController.to.supCategory[index].imageUrl,price: 15,quantity: SupCatPrpGetxController.to.supCategory[index].productsCount,),
-    //             );
-    //           },
-    // ):
-    //           !SupCatPrpGetxController.to.loadingsupCategory.value &&
-    //               SupCatPrpGetxController.to.supCategory.value.isEmpty
-    //               ? Center(
-    //             child: Column(
-    //               children: const [
-    //                 Icon(Icons.warning, size: 80),
-    //                 Text(
-    //                   'NO DATA',
-    //                   style: TextStyle(
-    //                     color: Colors.grey,
-    //                     fontWeight: FontWeight.bold,
-    //                     fontSize: 24,
-    //                   ),
-    //                 )
-    //               ],
-    //             ),
-    //           )
-    //               : Center(child: CircularProgressIndicator())
             ],
           ),
         ),

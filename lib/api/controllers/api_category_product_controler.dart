@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:elancer_api/helpers/helpers.dart';
+import 'package:elancer_api/models/api/category_api.dart';
 import 'package:elancer_api/models/api/product.dart';
 import 'package:elancer_api/models/category_sup_product_model/ProductDetails/base_prodict_detales.dart';
 import 'package:elancer_api/models/category_sup_product_model/ProductDetails/opject_prodict.dart';
@@ -11,6 +12,21 @@ import '../api_settings.dart';
 import 'package:http/http.dart' as http;
 
 class ApiCategoryProductController with Helpers{
+  Future<List<Categorie>> getCategories(String idcat) async {
+    var url = Uri.parse(ApiSettings.categoriesSup+idcat);
+    var response = await http.get(url
+        ,headers:{
+          HttpHeaders.authorizationHeader:SharedPrefController().token
+        }
+    );
+    if (response.statusCode == 200) {
+      var categoriesJsonArray = jsonDecode(response.body)['list'] as List;
+      return categoriesJsonArray
+          .map((jsonObject) => Categorie.fromJson(jsonObject))
+          .toList();
+    }
+    return [];
+  }
   Future<List<SupCategory>> getSupCategories(String idcat) async {
     var url = Uri.parse(ApiSettings.categoriesSup+idcat);
     var response = await http.get(url

@@ -1,5 +1,4 @@
 import 'package:elancer_api/models/city/model_city_todata.dart';
-import 'package:elancer_api/models/student.dart';
 import 'package:elancer_api/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
